@@ -1,0 +1,34 @@
+name: dishankdev
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: any
+  # url_strategy: any
+  url_launcher: any
+
+  # Navigation 2.0 declarative
+  auto_route: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+  build_runner: any
+  auto_route_generator: any
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/main-bg-image.jpeg
