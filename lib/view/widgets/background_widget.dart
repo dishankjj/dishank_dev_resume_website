@@ -8,40 +8,31 @@ class FullScreenBackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
-    if (media.orientation == Orientation.landscape) {
-      return _landscape(context, media);
-    } else {
-      return _portrait(context, media);
-    }
+    var isLandscapeViewPort = media.orientation == Orientation.landscape;
+    return Stack(
+      children: [
+        Container(
+          width: media.size.width,
+          height: media.size.height,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: const AssetImage('assets/main-bg-image.jpeg'),
+                  fit: isLandscapeViewPort ? BoxFit.fill : BoxFit.fitHeight)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              color: Colors.black.withOpacity(0.1),
+            ),
+          ),
+        ),
+        Positioned(
+          top: (media.size.height / 2) - 50,
+          left: isLandscapeViewPort ? media.size.width - 250 : 10000,
+          child: FlutterLogo(
+            size: media.size.height / 5,
+          ),
+        ),
+      ],
+    );
   }
-
-  _portrait(context, media) => Container(
-        width: media.size.width,
-        height: media.size.height,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/main-bg-image.jpeg'),
-                fit: BoxFit.fitHeight)),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Container(
-            color: Colors.black.withOpacity(0.1),
-          ),
-        ),
-      );
-
-  _landscape(context, media) => Container(
-        width: media.size.width,
-        height: media.size.height,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/main-bg-image.jpeg'),
-                fit: BoxFit.fill)),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Container(
-            color: Colors.black.withOpacity(0.1),
-          ),
-        ),
-      );
 }

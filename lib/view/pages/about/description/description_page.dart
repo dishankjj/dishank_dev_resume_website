@@ -1,43 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DescriptionPartA extends StatelessWidget {
-  const DescriptionPartA({Key? key}) : super(key: key);
+class Description extends StatelessWidget {
+  const Description(this.message,
+      {this.width, this.height, this.backgroundColor, Key? key})
+      : super(key: key);
+  final String? message;
+  final double? width;
+  final double? height;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context);
+    var orientation = media.orientation == Orientation.landscape;
+
     return Container(
-      color: Colors.red,
-      child: const Center(
-        child: Text('Part A'),
+      width: width,
+      height: height,
+      color: backgroundColor,
+      child: Center(
+        child: Text(message ?? 'Example Text Description'),
       ),
     );
   }
 }
 
-class DescriptionPartB extends StatelessWidget {
-  const DescriptionPartB({Key? key}) : super(key: key);
+class DescriptionCard extends StatelessWidget {
+  const DescriptionCard(this.message,
+      {this.width, this.height, this.backgroundColor, Key? key})
+      : super(key: key);
+  final String? message;
+  final double? width;
+  final double? height;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-      child: const Center(
-        child: Text('Part B'),
-      ),
-    );
-  }
-}
+    var media = MediaQuery.of(context);
+    var orientation = media.orientation == Orientation.landscape;
 
-class DescriptionPartC extends StatelessWidget {
-  const DescriptionPartC({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
-      child: const Center(
-        child: Text('Part C'),
+      width: width,
+      height: height,
+      child: Card(
+        color: backgroundColor,
+        child: Center(
+          child: Text(message ?? 'Example Text Description'),
+        ),
       ),
     );
   }
