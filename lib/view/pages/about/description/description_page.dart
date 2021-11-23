@@ -12,9 +12,6 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
-    var orientation = media.orientation == Orientation.landscape;
-
     return Container(
       width: width,
       height: height,
@@ -37,10 +34,7 @@ class DescriptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
-    var orientation = media.orientation == Orientation.landscape;
-
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: Card(
