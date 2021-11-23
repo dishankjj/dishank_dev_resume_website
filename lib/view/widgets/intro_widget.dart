@@ -20,7 +20,6 @@ class IntroductionWidget extends StatelessWidget {
           child: SelectableText(
             message,
             textAlign: TextAlign.center,
-            maxLines: 2,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -48,11 +47,10 @@ class IntroductionWidget extends StatelessWidget {
           child: SelectableText(
             message,
             textAlign: TextAlign.center,
-            maxLines: 3,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: media.size.width / 30,
+              fontSize: media.size.width / 25,
               letterSpacing: 5,
               shadows: const [
                 Shadow(

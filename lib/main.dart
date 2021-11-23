@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dishankdev/router/app_router.gr.dart';
-import 'package:flutter/services.dart';
 // import 'package:url_strategy/url_strategy.dart';
 
 void main() {

@@ -8,6 +8,14 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
+    if (media.orientation == Orientation.landscape) {
+      return _landscape(context, media);
+    } else {
+      return _portrait(context, media);
+    }
+  }
+
+  _landscape(context, media) {
     return Row(
       children: [
         Container(
@@ -28,6 +36,26 @@ class AboutPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  _portrait(context, media) {
+    return SizedBox(
+      width: media.size.width / 2,
+      child: PageView(
+        scrollDirection: Axis.vertical,
+        children: [
+          Container(
+            alignment: Alignment.center,
+            width: media.size.width / 2,
+            color: Theme.of(context).backgroundColor,
+            child: const Text('About Page'),
+          ),
+          const DescriptionPartA(),
+          const DescriptionPartB(),
+          const DescriptionPartC(),
+        ],
+      ),
     );
   }
 }

@@ -18,6 +18,9 @@ dependencies:
   # Navigation 2.0 declarative
   auto_route: any
 
+  # Simple Animation looper
+  simple_animations: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

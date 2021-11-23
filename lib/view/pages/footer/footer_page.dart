@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FooterPage extends StatelessWidget {
@@ -38,11 +39,23 @@ class FooterPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                      onTap: () async {
-                        await launch('https://flutter.dev/');
-                      },
-                      child: const FlutterLogo()),
+                  MirrorAnimation<double>(
+                    tween: Tween(
+                      begin: 0.9,
+                      end: 1.1,
+                    ),
+                    duration: const Duration(seconds: 1),
+                    builder: (context, child, value) {
+                      return Transform.scale(
+                        scale: value,
+                        child: GestureDetector(
+                            onTap: () async {
+                              await launch('https://flutter.dev/');
+                            },
+                            child: const FlutterLogo()),
+                      );
+                    },
+                  ),
                   RichText(
                     text: const TextSpan(
                       style: TextStyle(
@@ -60,23 +73,31 @@ class FooterPage extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
-          bottom: (media.size.height / 10) + 25,
-          right: 15,
-          child: FloatingActionButton(
-            backgroundColor: Theme.of(context).backgroundColor,
-            onPressed: () {
-              pageController.animateToPage(
-                0,
-                duration: const Duration(seconds: 1),
-                curve: Curves.easeOut,
-              );
-            },
-            child: const Icon(
-              Icons.arrow_upward_outlined,
-              color: Colors.white,
-            ),
-          ),
+        MirrorAnimation<double>(
+          tween: Tween(
+              begin: (media.size.height / 10) + 5,
+              end: (media.size.height / 10) + 25),
+          duration: const Duration(seconds: 1),
+          builder: (context, child, value) {
+            return Positioned(
+              bottom: value,
+              right: 15,
+              child: FloatingActionButton(
+                backgroundColor: Theme.of(context).backgroundColor,
+                onPressed: () {
+                  pageController.animateToPage(
+                    0,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeOut,
+                  );
+                },
+                child: const Icon(
+                  Icons.arrow_upward_outlined,
+                  color: Colors.white,
+                ),
+              ),
+            );
+          },
         ),
       ],
     );
