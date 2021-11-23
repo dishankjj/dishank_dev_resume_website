@@ -8,7 +8,6 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context);
-    var orientation = media.orientation == Orientation.landscape;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
