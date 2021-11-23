@@ -81,7 +81,7 @@ class FooterPage extends StatelessWidget {
           builder: (context, child, value) {
             return Positioned(
               bottom: value,
-              right: 15,
+              right: 30,
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).backgroundColor,
                 onPressed: () {
