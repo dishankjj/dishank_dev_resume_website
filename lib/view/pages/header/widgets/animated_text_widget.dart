@@ -2,15 +2,15 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HeaderWidget extends StatefulWidget {
-  const HeaderWidget(this.message, {Key? key}) : super(key: key);
+class AnimatedTextWidget extends StatefulWidget {
+  const AnimatedTextWidget(this.message, {Key? key}) : super(key: key);
   final List<String> message;
 
   @override
-  State<HeaderWidget> createState() => _HeaderWidgetState();
+  State<AnimatedTextWidget> createState() => _AnimatedTextWidgetState();
 }
 
-class _HeaderWidgetState extends State<HeaderWidget> {
+class _AnimatedTextWidgetState extends State<AnimatedTextWidget> {
   bool flag = false;
   bool flag1 = false;
 
@@ -29,7 +29,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 child: AnimatedTextKit(
                   totalRepeatCount: 1,
                   animatedTexts: [
-                    TypewriterAnimatedText(widget.message[0], cursor: '|'),
+                    TypewriterAnimatedText(widget.message[0]),
                     TypewriterAnimatedText(
                         widget.message[0] + " " + widget.message[1])
                   ],
@@ -45,7 +45,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                       top: media.size.height / (isLandscapeView ? 2.25 : 2.22),
                       child: AnimatedTextKit(
                         totalRepeatCount: 1,
-                        animatedTexts: [
+                        animatedTexts:
+                            // isLandscapeView ?
+                            [
                           ColorizeAnimatedText(
                             widget.message[2],
                             colors: [
@@ -55,7 +57,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                             ],
                             speed: const Duration(milliseconds: 75),
                             textStyle: TextStyle(
-                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: media.size.width /
                                   (isLandscapeView ? 15 : 10),
@@ -83,7 +84,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                             ],
                             speed: const Duration(milliseconds: 75),
                             textStyle: TextStyle(
-                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: media.size.width /
                                   (isLandscapeView ? 15 : 10),
@@ -109,9 +109,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                               Colors.green,
                               Colors.blue,
                             ],
-                            speed: const Duration(milliseconds: 50),
+                            speed: const Duration(milliseconds: 0),
                             textStyle: TextStyle(
-                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: media.size.width /
                                   (isLandscapeView ? 30 : 20),
@@ -129,9 +128,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                                 ),
                               ],
                             ),
-                            // TyperAnimatedText(
-                            //     widget.message[2] + " & " + widget.message[3]),
-                          )
+                          ),
                         ],
                         onFinished: () {
                           setState(() {

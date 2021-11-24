@@ -1,14 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:dishankdev/router/app_router.gr.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 // import 'package:url_strategy/url_strategy.dart';
 
 void main() {
   // setPathUrlStrategy();
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final _appRouter = AppRouter();
 
   @override

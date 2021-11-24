@@ -25,13 +25,13 @@ class FullScreenBackgroundImage extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          top: (media.size.height / 2) - 50,
-          left: isLandscapeViewPort ? media.size.width - 250 : 10000,
-          child: FlutterLogo(
-            size: media.size.height / 5,
-          ),
-        ),
+        // Positioned(
+        //   top: (media.size.height / 2) - 50,
+        //   left: isLandscapeViewPort ? media.size.width - 250 : 10000,
+        //   child: FlutterLogo(
+        //     size: media.size.height / 5,
+        //   ),
+        // ),
       ],
     );
   }

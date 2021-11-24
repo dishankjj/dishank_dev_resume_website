@@ -1,26 +1,26 @@
-import 'package:dishankdev/view/widgets/background_widget.dart';
-import 'package:dishankdev/view/widgets/header_widget.dart';
+import 'package:dishankdev/view/pages/header/widgets/full_screen_background_image_widget.dart';
+import 'package:dishankdev/view/pages/header/widgets/animated_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage(this.pageController, {Key? key}) : super(key: key);
+class HeaderPage extends StatefulWidget {
+  const HeaderPage(this.pageController, {Key? key}) : super(key: key);
 
   final PageController pageController;
 
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<HeaderPage> createState() => _HeaderPageState();
 }
 
-class _IntroPageState extends State<IntroPage> {
+class _HeaderPageState extends State<HeaderPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         const FullScreenBackgroundImage(),
-        const HeaderWidget([
+        const AnimatedTextWidget([
           "Hi, I'm",
           "Dishank.",
           "Designs",
