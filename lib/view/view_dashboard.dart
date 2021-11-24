@@ -1,14 +1,13 @@
-// ignore_for_file: unused_import, implementation_imports
-
 import 'dart:async';
-import 'package:auto_route/src/router/auto_router_x.dart';
-import 'package:dishankdev/view/pages/about/about_page.dart';
-import 'package:dishankdev/view/pages/footer/footer_page.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'pages/info/info_page.dart';
+
+import 'pages/about/about_page.dart';
+import 'pages/footer/footer_page.dart';
+import 'pages/header/header_page.dart';
 import 'widgets/scrollbar_widget.dart';
 
 class ViewDashboard extends StatefulWidget {
@@ -22,10 +21,12 @@ class _ViewDashboardState extends State<ViewDashboard> {
   final PageController _pageController = PageController();
   double _offset = 0.0;
 
+  final Future<FirebaseApp> _init = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context);
     Timer(Duration.zero, () {
+      var media = MediaQuery.of(context);
       var orientation = media.orientation == Orientation.landscape;
 
       setState(() {
@@ -40,26 +41,48 @@ class _ViewDashboardState extends State<ViewDashboard> {
       ),
     );
 
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Stack(
-        children: [
-          PageView(
-            pageSnapping: false,
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            children: [
-              IntroPage(_pageController),
-              const AboutPage(),
-              FooterPage(_pageController),
-            ],
+    return FutureBuilder(
+      future: _init,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Center(
+            child: Scaffold(
+              body: Center(
+                child: Text('Error while loading the Firebase..'),
+              ),
+            ),
+          );
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Scaffold(
+            backgroundColor: Theme.of(context).backgroundColor,
+            body: Stack(
+              children: [
+                PageView(
+                  pageSnapping: false,
+                  controller: _pageController,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    HeaderPage(_pageController),
+                    const AboutPage(),
+                    FooterPage(_pageController),
+                  ],
+                ),
+                Positioned(
+                  right: 0,
+                  child: ScrollBar(
+                      offset: _offset, pageController: _pageController),
+                ),
+              ],
+            ),
+          );
+        }
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
           ),
-          Positioned(
-            right: 0,
-            child: ScrollBar(offset: _offset, pageController: _pageController),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
