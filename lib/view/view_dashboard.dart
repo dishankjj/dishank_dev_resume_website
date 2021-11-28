@@ -40,7 +40,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
         // to stay with 85% range of scroll to represent the max scroll limit
         _scrollOffsetRatio = (_pageController.position.maxScrollExtent /
                 _pageController.position.viewportDimension) *
-            1.15;
+            1.135;
         _scrollOffset = _pageController.position.pixels / _scrollOffsetRatio;
         _checkEndOfPage = _pageController.position.maxScrollExtent <=
             _pageController.position.pixels + 200;
