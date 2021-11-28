@@ -175,7 +175,7 @@ class _AnimatedTextWidgetState extends State<AnimatedTextWidget> {
                                   textStyle: TextStyle(
                                     color: Colors.orange,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: media.size.width / 10,
+                                    fontSize: media.size.width / 20,
                                     letterSpacing: 5,
                                     shadows: const [
                                       Shadow(
