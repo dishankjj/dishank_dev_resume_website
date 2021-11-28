@@ -45,91 +45,153 @@ class _AnimatedTextWidgetState extends State<AnimatedTextWidget> {
                       top: media.size.height / (isLandscapeView ? 2.25 : 2.22),
                       child: AnimatedTextKit(
                         totalRepeatCount: 1,
-                        animatedTexts:
-                            // isLandscapeView ?
-                            [
-                          ColorizeAnimatedText(
-                            widget.message[2],
-                            colors: [
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue,
-                            ],
-                            speed: const Duration(milliseconds: 75),
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: media.size.width /
-                                  (isLandscapeView ? 15 : 10),
-                              letterSpacing: 5,
-                              shadows: const [
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.white,
-                                  offset: Offset(2.0, 3.0),
+                        animatedTexts: isLandscapeView
+                            ? [
+                                ColorizeAnimatedText(
+                                  widget.message[2],
+                                  colors: [
+                                    Colors.red,
+                                    Colors.green,
+                                    Colors.blue,
+                                  ],
+                                  speed: const Duration(milliseconds: 75),
+                                  textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width /
+                                        (isLandscapeView ? 15 : 10),
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.black,
-                                  offset: Offset(-2.0, 3.0),
+                                ColorizeAnimatedText(
+                                  widget.message[3],
+                                  colors: [
+                                    Colors.red,
+                                    Colors.green,
+                                    Colors.blue,
+                                  ],
+                                  speed: const Duration(milliseconds: 75),
+                                  textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width / 15,
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                                ColorizeAnimatedText(
+                                  widget.message[2] + " & " + widget.message[3],
+                                  colors: [
+                                    Colors.red,
+                                    Colors.green,
+                                    Colors.blue,
+                                  ],
+                                  speed: const Duration(milliseconds: 0),
+                                  textStyle: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width / 30,
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]
+                            : [
+                                FlickerAnimatedText(
+                                  widget.message[2],
+                                  textStyle: TextStyle(
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width / 10,
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                FlickerAnimatedText(
+                                  widget.message[3],
+                                  textStyle: TextStyle(
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width / 10,
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                TyperAnimatedText(
+                                  widget.message[2] + " & " + widget.message[3],
+                                  textStyle: TextStyle(
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: media.size.width / 10,
+                                    letterSpacing: 5,
+                                    shadows: const [
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.white,
+                                        offset: Offset(2.0, 3.0),
+                                      ),
+                                      Shadow(
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                        offset: Offset(-2.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
-                            ),
-                          ),
-                          ColorizeAnimatedText(
-                            widget.message[3],
-                            colors: [
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue,
-                            ],
-                            speed: const Duration(milliseconds: 75),
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: media.size.width /
-                                  (isLandscapeView ? 15 : 10),
-                              letterSpacing: 5,
-                              shadows: const [
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.white,
-                                  offset: Offset(2.0, 3.0),
-                                ),
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.black,
-                                  offset: Offset(-2.0, 3.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                          ColorizeAnimatedText(
-                            widget.message[2] + " & " + widget.message[3],
-                            colors: [
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue,
-                            ],
-                            speed: const Duration(milliseconds: 0),
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: media.size.width /
-                                  (isLandscapeView ? 30 : 20),
-                              letterSpacing: 5,
-                              shadows: const [
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.white,
-                                  offset: Offset(2.0, 3.0),
-                                ),
-                                Shadow(
-                                  blurRadius: 3.0,
-                                  color: Colors.black,
-                                  offset: Offset(-2.0, 3.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
                         onFinished: () {
                           setState(() {
                             flag1 = !flag1;

@@ -17,12 +17,12 @@ class FooterPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              height: media.size.height * 9 / 10,
+              height: media.size.height * 0.9,
               color: Colors.white,
             ),
             Container(
               alignment: Alignment.center,
-              height: media.size.height / 10,
+              height: media.size.height * 0.1,
               color: Theme.of(context).backgroundColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,10 +49,11 @@ class FooterPage extends StatelessWidget {
                       return Transform.scale(
                         scale: value,
                         child: GestureDetector(
-                            onTap: () async {
-                              await launch('https://flutter.dev/');
-                            },
-                            child: const FlutterLogo()),
+                          onTap: () async {
+                            await launch('https://flutter.dev/');
+                          },
+                          child: const FlutterLogo(),
+                        ),
                       );
                     },
                   ),
@@ -73,32 +74,7 @@ class FooterPage extends StatelessWidget {
             ),
           ],
         ),
-        MirrorAnimation<double>(
-          tween: Tween(
-              begin: (media.size.height / 10) + 5,
-              end: (media.size.height / 10) + 25),
-          duration: const Duration(seconds: 1),
-          builder: (context, child, value) {
-            return Positioned(
-              bottom: value,
-              right: 30,
-              child: FloatingActionButton(
-                backgroundColor: Theme.of(context).backgroundColor,
-                onPressed: () {
-                  pageController.animateToPage(
-                    0,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.easeOut,
-                  );
-                },
-                child: const Icon(
-                  Icons.arrow_upward_outlined,
-                  color: Colors.white,
-                ),
-              ),
-            );
-          },
-        ),
+        // BackToTopIconWidget(pageController: pageController),
       ],
     );
   }

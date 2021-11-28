@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class DescriptionCard extends StatelessWidget {
   }
 }
 
-class DescriptionImage extends StatelessWidget {
+class DescriptionImage extends StatefulWidget {
   const DescriptionImage(
       {this.image, this.width, this.height, this.backgroundColor, Key? key})
       : super(key: key);
@@ -57,25 +58,54 @@ class DescriptionImage extends StatelessWidget {
   final Color? backgroundColor;
 
   @override
+  State<DescriptionImage> createState() => _DescriptionImageState();
+}
+
+class _DescriptionImageState extends State<DescriptionImage> {
+  Future<String> imageData = FirebaseStorage.instance
+      .ref()
+      .child('images')
+      .child('panda_16x9.jpeg')
+      .getDownloadURL();
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      color: backgroundColor,
-      child: Container(
-        height: height ?? MediaQuery.of(context).size.height / 2.5,
-        width: width ?? MediaQuery.of(context).size.height * 0.25,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: NetworkImage(
-              image ?? "https://tinyjpg.com/images/social/website.jpg",
-              headers: {
-                "Access-Control-Allow-Origin": "*",
-              },
-            ),
-          ),
-        ),
-      ),
-    );
+    return FutureBuilder<String>(
+        future: imageData,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Description('error');
+          }
+          return snapshot.hasData
+              ? Card(
+                  child: Container(
+                    height: widget.height ??
+                        MediaQuery.of(context).size.height / 2.5,
+                    width: widget.width ??
+                        MediaQuery.of(context).size.height * 0.25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(snapshot.data ?? ''),
+                      ),
+                    ),
+                  ),
+                )
+              : Card(
+                  child: Container(
+                    height: widget.height ??
+                        MediaQuery.of(context).size.height / 2.5,
+                    width: widget.width ??
+                        MediaQuery.of(context).size.height * 0.25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                );
+        });
   }
 }
