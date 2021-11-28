@@ -19,6 +19,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
 
   List<Widget> _pages = [];
   double _scrollOffset = 0.0;
+  double _scrollOffsetRatio = 0.0;
   bool _checkEndOfPage = false;
 
   @override
@@ -37,10 +38,10 @@ class _ViewDashboardState extends State<ViewDashboard> {
         // Because, there is some height of scroll bar icon itself.
         // the final formula is just dividing the pixels with the dynamic value
         // to stay with 85% range of scroll to represent the max scroll limit
-        _scrollOffset = _pageController.position.pixels /
-            ((_pageController.position.maxScrollExtent /
-                    _pageController.position.viewportDimension) *
-                1.15);
+        _scrollOffsetRatio = (_pageController.position.maxScrollExtent /
+                _pageController.position.viewportDimension) *
+            1.15;
+        _scrollOffset = _pageController.position.pixels / _scrollOffsetRatio;
         _checkEndOfPage = _pageController.position.maxScrollExtent <=
             _pageController.position.pixels + 200;
       });
@@ -105,10 +106,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
   _onVerticalDragUpdateMethod(DragUpdateDetails dragUpdate) {
     if (_pageController.hasClients) {
       _pageController.position
-          .moveTo(dragUpdate.globalPosition.dy * (_pages.length * 0.75));
-      setState(() {
-        _scrollOffset = _pageController.position.pixels;
-      });
+          .moveTo(dragUpdate.globalPosition.dy * _scrollOffsetRatio);
     }
   }
 }
