@@ -4,16 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class HeaderPage extends StatefulWidget {
-  const HeaderPage(this.pageController, {Key? key}) : super(key: key);
+class HeaderPage extends StatelessWidget {
+  const HeaderPage(this._pageController, {Key? key}) : super(key: key);
 
-  final PageController pageController;
+  final PageController _pageController;
 
-  @override
-  State<HeaderPage> createState() => _HeaderPageState();
-}
-
-class _HeaderPageState extends State<HeaderPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,7 +20,7 @@ class _HeaderPageState extends State<HeaderPage> {
           "Dishank.",
           "Designs",
           "Develops",
-          "interactive Ui/Ux."
+          "interactive Ui/Ux"
         ]),
         MirrorAnimation<double>(
           tween: Tween(begin: 0, end: 20),
@@ -35,7 +30,7 @@ class _HeaderPageState extends State<HeaderPage> {
               bottom: value,
               child: GestureDetector(
                 onTap: () {
-                  widget.pageController.nextPage(
+                  _pageController.nextPage(
                       duration: const Duration(seconds: 1),
                       curve: Curves.easeOut);
                 },
