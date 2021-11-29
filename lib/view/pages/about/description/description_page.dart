@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,50 +63,53 @@ class DescriptionImage extends StatefulWidget {
 }
 
 class _DescriptionImageState extends State<DescriptionImage> {
-  Future<String> imageData = FirebaseStorage.instance
+  Future<Uint8List?> imageData = FirebaseStorage.instance
       .ref()
       .child('images')
       .child('panda_16x9.jpeg')
-      .getDownloadURL();
+      .getData();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-        future: imageData,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Description('error');
-          }
-          return snapshot.hasData
-              ? Card(
-                  child: Container(
-                    height: widget.height ??
-                        MediaQuery.of(context).size.height / 2.5,
-                    width: widget.width ??
-                        MediaQuery.of(context).size.height * 0.25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(snapshot.data ?? ''),
+    return FutureBuilder<Uint8List?>(
+      future: imageData,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Description('error');
+        }
+        return snapshot.hasData
+            ? Card(
+                child: Container(
+                  height:
+                      widget.height ?? MediaQuery.of(context).size.height / 2.5,
+                  width:
+                      widget.width ?? MediaQuery.of(context).size.height * 0.25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: MemoryImage(
+                        snapshot.data!,
                       ),
                     ),
                   ),
-                )
-              : Card(
-                  child: Container(
-                    height: widget.height ??
-                        MediaQuery.of(context).size.height / 2.5,
-                    width: widget.width ??
-                        MediaQuery.of(context).size.height * 0.25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                ),
+              )
+            : Card(
+                child: Container(
+                  height:
+                      widget.height ?? MediaQuery.of(context).size.height / 2.5,
+                  width:
+                      widget.width ?? MediaQuery.of(context).size.height * 0.25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                );
-        });
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              );
+      },
+    );
   }
 }

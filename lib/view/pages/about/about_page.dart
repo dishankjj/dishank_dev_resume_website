@@ -45,6 +45,7 @@ class AboutPage extends StatelessWidget {
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         if (index.isEven) {
+                          // no Image because i am providing it with dummy image
                           return DescriptionImage(
                             width: media.size.width *
                                 ((Random().nextInt(3) + 2) / 10),
@@ -64,6 +65,7 @@ class AboutPage extends StatelessWidget {
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         if (index.isOdd) {
+                          // no Image because i am providing it with dummy image
                           return DescriptionImage(
                             width: media.size.width *
                                 ((Random().nextInt(3) + 2) / 10),

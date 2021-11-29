@@ -9,8 +9,6 @@ Future<void> main() async {
   // setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // await GRecaptchaV3.ready("5LemQVodAAAAANDyqBXF6KQjzQtBeNonVBTm2Yk0",
-  //     showBadge: true);
   await FirebaseAppCheck.instance.activate(
       webRecaptchaSiteKey: '6LemQVodAAAAANDyqBXF6KQjzQtBeNonVBTm2Yk0');
   runApp(const MyApp());

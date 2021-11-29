@@ -28,9 +28,6 @@ dependencies:
   cloud_firestore: any
   firebase_storage: any
 
-  # Recaptcha v3
-  g_recaptcha_v3: any
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

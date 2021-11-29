@@ -20,7 +20,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
   List<Widget> _pages = [];
   double _scrollOffset = 0.0;
   double _scrollOffsetRatio = 0.0;
-  bool _checkEndOfPage = false;
+  bool _checkScrolledDown = false;
 
   @override
   void initState() {
@@ -42,8 +42,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
                 _pageController.position.viewportDimension) *
             1.135;
         _scrollOffset = _pageController.position.pixels / _scrollOffsetRatio;
-        _checkEndOfPage = _pageController.position.maxScrollExtent <=
-            _pageController.position.pixels + 200;
+        _checkScrolledDown = _pageController.position.minScrollExtent <= 200;
       });
     });
 
@@ -90,7 +89,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
               _scrollOffset + 15,
             ),
           ),
-          BackToTopIconWidget(_jumpPageToStart, _checkEndOfPage),
+          BackToTopIconWidget(_jumpPageToStart, _checkScrolledDown),
         ],
       ),
     );
