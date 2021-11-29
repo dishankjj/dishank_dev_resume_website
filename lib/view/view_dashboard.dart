@@ -42,7 +42,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
                 _pageController.position.viewportDimension) *
             1.135;
         _scrollOffset = _pageController.position.pixels / _scrollOffsetRatio;
-        _checkScrolledDown = _pageController.position.minScrollExtent <= 200;
+        _checkScrolledDown = _pageController.position.pixels >= 200;
       });
     });
 
