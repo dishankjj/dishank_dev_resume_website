@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -15,8 +14,8 @@ class BackToTopIconWidget extends StatelessWidget {
     return checkEndOfPage
         ? MirrorAnimation<double>(
             tween: Tween(
-                begin: (MediaQuery.of(context).size.height * 0.1) + 5,
-                end: (MediaQuery.of(context).size.height * 0.1) + 25),
+                begin: (MediaQuery.of(context).size.height * 0.75) + 5,
+                end: (MediaQuery.of(context).size.height * 0.75) + 25),
             duration: const Duration(seconds: 1),
             builder: (context, child, value) {
               return Positioned(

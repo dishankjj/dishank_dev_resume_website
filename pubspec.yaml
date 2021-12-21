@@ -21,6 +21,7 @@ dependencies:
   # Simple Animation looper
   simple_animations: any
   animated_text_kit: any
+  auto_size_text: any
 
   # Firebase
   firebase_core: any

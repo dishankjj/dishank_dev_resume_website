@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Description extends StatelessWidget {
@@ -66,7 +65,7 @@ class _DescriptionImageState extends State<DescriptionImage> {
   Future<Uint8List?> imageData = FirebaseStorage.instance
       .ref()
       .child('images')
-      .child('panda_16x9.jpeg')
+      .child('computer_16x9.jpeg')
       .getData();
 
   @override
