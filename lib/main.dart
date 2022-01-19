@@ -1,21 +1,17 @@
+import 'package:dishankdev/firebase_options.dart';
 import 'package:dishankdev/router/app_router.gr.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:url_strategy/url_strategy.dart';
 
 Future<void> main() async {
-  // setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await FirebaseAppCheck.instance.activate(
-      webRecaptchaSiteKey: '6LemQVodAAAAANDyqBXF6KQjzQtBeNonVBTm2Yk0');
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  
   @override
   State<MyApp> createState() => _MyAppState();
 }
