@@ -1,5 +1,6 @@
+import 'package:beamer/beamer.dart';
 import 'package:dishankdev/firebase_options.dart';
-import 'package:dishankdev/router/app_router.gr.dart';
+import 'package:dishankdev/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  Beamer.setPathUrlStrategy();
 
   runApp(const MyApp());
 }
@@ -21,7 +24,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter.beamerDelegate;
+  final _appRouteParser = AppRouter.beamerParser;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       // Main Material App
       title: 'Flutter Developer',
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouteParser,
+      routerDelegate: _appRouter,
+      backButtonDispatcher: BeamerBackButtonDispatcher(delegate: _appRouter),
       // Theme settings
       themeMode: ThemeMode.system,
       theme: ThemeData.light(),

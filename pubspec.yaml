@@ -14,7 +14,7 @@ dependencies:
   url_launcher: ^6.0.18
 
   # Navigation 2.0 declarative
-  auto_route: ^3.2.1
+  beamer: ^1.2.0
 
   # Simple Animation looper
   simple_animations: ^4.0.1
