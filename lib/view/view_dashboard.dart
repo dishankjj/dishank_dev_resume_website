@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'pages/about/about_page.dart';
 import 'pages/footer/footer_page.dart';
 import 'pages/header/header_page.dart';
+import 'pages/header/widgets/full_screen_background_image_widget.dart';
 import 'widgets/back_to_top_icon_widget.dart';
-import 'widgets/scrollbar_widget.dart';
 
 class ViewDashboard extends StatefulWidget {
   const ViewDashboard({Key? key}) : super(key: key);
@@ -15,98 +14,103 @@ class ViewDashboard extends StatefulWidget {
 }
 
 class _ViewDashboardState extends State<ViewDashboard> {
-  final PageController _pageController = PageController();
+  final ScrollController _scrollController = ScrollController();
 
   List<Widget> _pages = [];
-  double _scrollOffset = 0.0;
-  double _scrollOffsetRatio = 0.0;
-  bool _checkEndOfPage = false;
+  bool _checkScrolledDown = false;
 
   @override
   void initState() {
     super.initState();
 
-    // PageController Listener
-    _pageController.addListener(() {
+    _scrollController.addListener(() {
       setState(() {
-        // Formula for getting the exact position of the scroll bar location
-        // pixels represent the how much we scrolled down
-        // maxscroll/viewport give me the ratio
-        // i was multiplying 1.15 because i want to give down padding to scroll bar
-        // If i have 100% screen to how scroll bar, i am basically taking away 15%
-        // 5% from top and bottom, and 5% scroll bar icon height.
-        // Because, there is some height of scroll bar icon itself.
-        // the final formula is just dividing the pixels with the dynamic value
-        // to stay with 85% range of scroll to represent the max scroll limit
-        _scrollOffsetRatio = (_pageController.position.maxScrollExtent /
-                _pageController.position.viewportDimension) *
-            1.135;
-        _scrollOffset = _pageController.position.pixels / _scrollOffsetRatio;
-        _checkEndOfPage = _pageController.position.maxScrollExtent <=
-            _pageController.position.pixels + 200;
+        _checkScrolledDown = _scrollController.position.pixels >= 100;
       });
     });
 
-    // This peace of code takes Pages Widget
-    // as input to be shown on main Page
     _pages = [
-      HeaderPage(_pageController),
+      const HeaderPage(),
       const AboutPage(),
-      FooterPage(_pageController),
+      const FooterPage(),
     ];
   }
 
   @override
   void dispose() {
     super.dispose();
-    _pageController.dispose();
+    _scrollController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This peace of code "Dynamically"
-    // Changes Chrome title
-    SystemChrome.setApplicationSwitcherDescription(
-      ApplicationSwitcherDescription(
-        label: 'Dishank.Dev - The Flutter Developer',
-        primaryColor: Theme.of(context).primaryColor.value,
-      ),
-    );
-
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          PageView(
-            pageSnapping: false,
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            children: _pages,
-          ),
-          Positioned(
-            right: 0,
-            child: ScrollBarWidget(
-              _onVerticalDragUpdateMethod,
-              _scrollOffset + 15,
+          const FullScreenBackgroundImage(),
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Center(
+              child: Column(
+                children: _pages,
+              ),
             ),
           ),
-          BackToTopIconWidget(_jumpPageToStart, _checkEndOfPage),
+          if (_checkScrolledDown)
+            Container(
+              color: Colors.black.withOpacity(0.75),
+              height: MediaQuery.of(context).size.height * 0.25 / 2,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: const [
+                  Spacer(),
+                  FlutterLogo(),
+                  AutoSizeText('Dishank.Dev'),
+                  Spacer(),
+                  Spacer(),
+                  Spacer(),
+                  HeaderButtonWidget(
+                    message: 'GitHub',
+                    urlString: 'https://github.com/dishankjj',
+                  ),
+                  Spacer(),
+                  HeaderButtonWidget(
+                    message: 'LinkedIn',
+                    urlString: 'https://www.linkedin.com/in/dishankjindal/',
+                  ),
+                  Spacer(),
+                  HeaderButtonWidget(
+                    message: 'Resume',
+                    urlString:
+                        'https://drive.google.com/file/d/1V2VO29NJ0ahDDzYy16KqLc_XJfWAfwtY/view?usp=sharing',
+                  ),
+                  Spacer(),
+                  HeaderButtonWidget(
+                    message: 'Hire Me',
+                    urlString: 'https://www.freelancer.com/u/dishankakadj',
+                  ),
+                  Spacer(),
+                ],
+              ),
+            ),
+          BackToTopIconWidget(_jumpPageToStart, _checkScrolledDown),
         ],
       ),
     );
   }
 
   _jumpPageToStart() {
-    if (_pageController.hasClients) {
-      _pageController.animateToPage(0,
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(0,
           duration: const Duration(seconds: 1), curve: Curves.ease);
     }
   }
 
-  _onVerticalDragUpdateMethod(DragUpdateDetails dragUpdate) {
-    if (_pageController.hasClients) {
-      _pageController.position
-          .moveTo(dragUpdate.globalPosition.dy * _scrollOffsetRatio);
-    }
-  }
+  // _onVerticalDragUpdateMethod(DragUpdateDetails dragUpdate) {
+  //   if (_pageController.hasClients) {
+  //     _pageController.position
+  //         .moveTo(dragUpdate.globalPosition.dy * _scrollOffsetRatio);
+  //   }
+  // }
 }

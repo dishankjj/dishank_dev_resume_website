@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dishankdev/view/pages/about/description/description_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
@@ -16,7 +15,10 @@ class AboutPage extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
-        padding: const EdgeInsets.only(right: 50),
+        padding: EdgeInsets.symmetric(horizontal: media.size.width * 0.01),
+        width: media.size.width,
+        height: media.size.height,
+        color: Colors.black,
         child: FutureBuilder<DocumentSnapshot>(
           future: aboutPage.doc('v1').get(),
           builder: (context, snapshot) {
@@ -28,53 +30,58 @@ class AboutPage extends StatelessWidget {
             }
             if (snapshot.connectionState == ConnectionState.done) {
               var data = snapshot.data!.data() as Map<String, dynamic>;
-              return Wrap(
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                direction: Axis.vertical,
-                spacing: 25,
-                runSpacing: 25,
-                children: [
-                  Description(data['description']),
-                  SizedBox(
-                    height: media.size.height * 0.45,
-                    child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        if (index.isEven) {
-                          return DescriptionImage(
-                            width: media.size.width *
-                                ((Random().nextInt(3) + 2) / 10),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Description(data['description']),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: media.size.height * 0.45,
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              if (index.isEven) {
+                                // no Image because i am providing it with dummy image
+                                return DescriptionImage(
+                                  width: media.size.width *
+                                      ((Random().nextInt(3) + 2) / 10),
+                                );
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: media.size.height * 0.45,
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              if (index.isOdd) {
+                                // no Image because i am providing it with dummy image
+                                return DescriptionImage(
+                                  width: media.size.width *
+                                      ((Random().nextInt(3) + 2) / 10),
+                                );
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    height: media.size.height * 0.45,
-                    child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        if (index.isOdd) {
-                          return DescriptionImage(
-                            width: media.size.width *
-                                ((Random().nextInt(3) + 2) / 10),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      },
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
             return const Description('loading....');

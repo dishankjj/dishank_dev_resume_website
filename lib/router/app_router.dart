@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dishankdev/view/view_dashboard.dart';
 
@@ -15,10 +14,5 @@ import 'package:dishankdev/view/view_dashboard.dart';
       ),
     ],
   ),
-  // CustomRoute(
-  //     path: '/about.html',
-  //     page: AboutDashboard,
-  //     transitionsBuilder: TransitionsBuilders.slideBottom),
-  // RedirectRoute(path: '*', redirectTo: '/404.html')
 ])
 class $AppRouter {}
