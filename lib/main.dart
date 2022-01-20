@@ -16,23 +16,17 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter.beamerDelegate;
-  final _appRouteParser = AppRouter.beamerParser;
-
-  @override
   Widget build(BuildContext context) {
+    var _appRouter = AppRouter.beamerDelegate;
+    var _appRouteParser = AppRouter.beamerParser;
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      // Main Material App
-      title: 'Flutter Developer',
+      // Router Settings
       routeInformationParser: _appRouteParser,
       routerDelegate: _appRouter,
       backButtonDispatcher: BeamerBackButtonDispatcher(delegate: _appRouter),
