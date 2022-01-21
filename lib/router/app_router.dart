@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:dishankdev/view/add/add_dashboard.dart';
 import 'package:dishankdev/view/view_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart' as web;
@@ -16,8 +17,8 @@ class AppRouter {
     guards: [
       BeamGuard(
         pathPatterns: ["/add", "/add/*"],
-        check: (context, location) => false,
-        beamToNamed: (origin, target) => '/welcome-you',
+        check: (context, location) => true,
+        beamToNamed: (origin, target) => '/',
       ),
     ],
     // notFoundPage: CustomBeamPage.unknownPage,
@@ -35,7 +36,7 @@ class CustomBeamPage {
   static BeamPage add = const BeamPage(
     key: ValueKey('add-page'),
     title: 'Add New Post',
-    child: ViewDashboard(),
+    child: AddDashboard(),
   );
 
   static BeamPage unknownPage = BeamPage(
