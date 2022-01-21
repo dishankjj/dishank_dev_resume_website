@@ -3,6 +3,8 @@ import 'package:dishankdev/firebase_options.dart';
 import 'package:dishankdev/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/i10n.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +36,13 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
+      // Localozation
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        FormBuilderLocalizations.delegate
+      ],
     );
   }
 }

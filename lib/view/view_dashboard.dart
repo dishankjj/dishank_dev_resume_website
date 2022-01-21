@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:dishankdev/constants.dart';
 
 class ViewDashboard extends StatelessWidget {
@@ -9,17 +10,17 @@ class ViewDashboard extends StatelessWidget {
       builder: (context, constraint) {
         var _isMobileView = constraint.maxWidth <= 600;
         if (_isMobileView) {
-          return const MobileView();
+          return const _MobileView();
         } else {
-          return const WebView();
+          return const _WebView();
         }
       },
     );
   }
 }
 
-class WebView extends StatelessWidget {
-  const WebView({Key? key}) : super(key: key);
+class _WebView extends StatelessWidget {
+  const _WebView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +41,19 @@ class WebView extends StatelessWidget {
                   'assets/logo.png',
                   scale: 8,
                 ),
+                const Text(
+                  'dishank.dev',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    letterSpacing: 1,
+                  ),
+                ),
                 const Spacer(),
                 TextButton(
                   onPressed: () async {
-                    await launch('https://www.linkedin.com/in/dishankjindal/');
+                    // await launch('https://www.linkedin.com/in/dishankjindal/');
+                    Beamer.of(context).beamToNamed('/add');
                   },
                   child: const Text(
                     'Linkedin',
@@ -125,8 +135,8 @@ class WebView extends StatelessWidget {
   }
 }
 
-class MobileView extends StatelessWidget {
-  const MobileView({Key? key}) : super(key: key);
+class _MobileView extends StatelessWidget {
+  const _MobileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +168,8 @@ class MobileView extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   onPressed: () async {
-                    await launch('https://www.linkedin.com/in/dishankjindal/');
+                    // await launch('https://www.linkedin.com/in/dishankjindal/');
+                    Beamer.of(context).beamToNamed('/add');
                   },
                   child: const Text(
                     'Linkedin',
@@ -192,7 +203,7 @@ class MobileView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "I design and develops interactive Ui/Ux. I love what i do.",
+                      "I design and develops interactive Ui/Ux.\nI love what i do.",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.getFont('Expletus Sans').copyWith(
                         fontSize: 16,
