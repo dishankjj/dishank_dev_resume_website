@@ -1,8 +1,8 @@
 import 'package:beamer/beamer.dart';
+import 'package:dishankdev/constants.dart';
 import 'package:dishankdev/firebase_options.dart';
 import 'package:dishankdev/router/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/i10n.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
       backButtonDispatcher: BeamerBackButtonDispatcher(delegate: _appRouter),
       // Theme settings
       themeMode: ThemeMode.system,
-      theme: ThemeData.light(),
+      theme: ThemeData.light().copyWith(
+        textTheme: GoogleFonts.nunitoSansTextTheme(),
+        pageTransitionsTheme: NoTransitionsOnWeb(),
+      ),
       darkTheme: ThemeData.dark(),
       // Localozation
       localizationsDelegates: const [
@@ -44,5 +47,19 @@ class MyApp extends StatelessWidget {
         FormBuilderLocalizations.delegate
       ],
     );
+  }
+}
+
+class NoTransitionsOnWeb extends PageTransitionsTheme {
+  @override
+  Widget buildTransitions<T>(
+      PageRoute<T> route,
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    if (kIsWeb) return child;
+    return super
+        .buildTransitions(route, context, animation, secondaryAnimation, child);
   }
 }
