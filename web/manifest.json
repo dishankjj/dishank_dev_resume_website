@@ -1,6 +1,6 @@
 {
-    "name": "web",
-    "short_name": "web",
+    "name": "dishank_dev_resume_website",
+    "short_name": "dishank_dev_resume_website",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
