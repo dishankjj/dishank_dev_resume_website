@@ -1,6 +1,7 @@
 import 'package:dishank_dev_resume_website/app/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/app/utilities/image_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class WebHeaderModule extends StatelessWidget {
   const WebHeaderModule(this.pageController, {super.key});
@@ -11,11 +12,11 @@ class WebHeaderModule extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final Map<String, VoidCallback?> data = {
-      'Home': null,
-      'Expertise': null,
-      'Experience': null,
-      'Certification': null,
-      'Contact': null,
+      'Home': () => pageController.jumpToPage(0),
+      'Expertise': () => pageController.jumpToPage(1),
+      'Experience': () => pageController.jumpToPage(2),
+      'Certification': () => pageController.jumpToPage(3),
+      'Contact': () => pageController.jumpToPage(4),
       'HireMe': null,
     };
 
@@ -66,7 +67,7 @@ class WebHeaderModule extends StatelessWidget {
                             },
                             child: SizedBox(
                               height: 68,
-                              width: size.width * 0.075,
+                              width: size.width * 0.1,
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
@@ -75,17 +76,20 @@ class WebHeaderModule extends StatelessWidget {
                                           : const Color(WebColorAsset.bgBlack)),
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                          width: 2,
-                                          color: Color(WebColorAsset.bgYellow),
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(24)),
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: Color(WebColorAsset.bgYellow),
+                                      ),
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () => launchUrlString(
+                                  'https://www.linkedin.com/in/dishankjindal/',
+                                  mode: LaunchMode.externalApplication,
+                                ),
                                 child: Text(
-                                  'Hire Me',
+                                  'Ping Me',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -105,7 +109,7 @@ class WebHeaderModule extends StatelessWidget {
 
                     final item = data.entries.elementAt(index);
                     return Builder(builder: (context) {
-                      bool isHovering = false;
+                      bool isHovering = index == (pageController.page ?? 0);
 
                       return StatefulBuilder(
                           builder: (context, miniState) => MouseRegion(

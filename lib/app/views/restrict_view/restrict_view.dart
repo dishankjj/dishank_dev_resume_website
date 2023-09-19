@@ -41,9 +41,9 @@ class RestrictView extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
-                'Code is poetry - every line has a purpose, and every function tells a story.',
+                'Code is poetry - every line has a purpose,\nand every function tells a story.',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
             )
           ],

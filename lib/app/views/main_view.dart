@@ -38,35 +38,77 @@ class _MainWebViewState extends State<MainWebView> {
         width: size.width,
         height: size.height,
         child: Container(
+          alignment: Alignment.center,
           color: const Color(WebColorAsset.bgBlack),
-          child: const Placeholder(),
+          child: Text(
+            'Working on it...',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
+              const Shadow(
+                color: Colors.black26,
+                blurRadius: 4,
+              ),
+            ]),
+          ),
         ),
       ),
       SizedBox(
         width: size.width,
         height: size.height,
         child: Container(
+          alignment: Alignment.center,
           color: const Color(WebColorAsset.bgBlack),
-          child: const Placeholder(),
+          child: Text(
+            'Working on it...',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
+              const Shadow(
+                color: Colors.black26,
+                blurRadius: 4,
+              ),
+            ]),
+          ),
         ),
       ),
       SizedBox(
         width: size.width,
         height: size.height,
         child: Container(
+          alignment: Alignment.center,
           color: const Color(WebColorAsset.bgBlack),
-          child: const Placeholder(),
+          child: Text(
+            'Working on it...',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
+              const Shadow(
+                color: Colors.black26,
+                blurRadius: 4,
+              ),
+            ]),
+          ),
         ),
       ),
       SizedBox(
         width: size.width,
         height: size.height,
         child: Container(
+          alignment: Alignment.center,
           color: const Color(WebColorAsset.bgBlack),
-          child: const Placeholder(),
+          child: Text(
+            'Working on it...',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
+              const Shadow(
+                color: Colors.black26,
+                blurRadius: 4,
+              ),
+            ]),
+          ),
         ),
       ),
     ];
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
   }
 
   @override

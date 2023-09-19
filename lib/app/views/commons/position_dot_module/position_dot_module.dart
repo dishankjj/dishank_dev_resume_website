@@ -17,14 +17,21 @@ class WebPositionDotModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(
                 totalPages,
-                (index) => SizedBox.square(
-                  dimension: 12,
-                  child: Transform.scale(
-                    scale: pageController.page == index ? 1 : 0.6,
-                    child: CircleAvatar(
-                      backgroundColor: pageController.page == index
-                          ? const Color(WebColorAsset.bgOrange)
-                          : const Color(WebColorAsset.bgWhite),
+                (index) => InkWell(
+                  onTap: () {
+                    pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeOut);
+                  },
+                  child: SizedBox.square(
+                    dimension: 12,
+                    child: Transform.scale(
+                      scale: (pageController.page ?? 0) == index ? 1 : 0.6,
+                      child: CircleAvatar(
+                        backgroundColor: (pageController.page ?? 0) == index
+                            ? const Color(WebColorAsset.bgOrange)
+                            : const Color(WebColorAsset.bgWhite),
+                      ),
                     ),
                   ),
                 ),

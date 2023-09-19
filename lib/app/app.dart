@@ -12,6 +12,7 @@ class WebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
+      title: 'Dishank Jindal | Mobile Software Engineer',
       color: Colors.teal,
       navigatorKey: navState,
       initialRoute: '/',
@@ -35,38 +36,50 @@ class WebApp extends StatelessWidget {
               seedColor: const Color(WebColorAsset.bgYellow),
             ),
             textTheme: const TextTheme(
-              displayLarge: TextStyle(
-                fontSize: 60,
-                height: 1.25,
-                fontWeight: FontWeight.w700,
-                color: Color(WebColorAsset.textWhite),
-              ),
-              titleLarge: TextStyle(
-                fontSize: 48,
-                height: 1.25,
-                fontWeight: FontWeight.w700,
-                color: Color(WebColorAsset.textWhite),
-              ),
-              titleMedium: TextStyle(
-                fontSize: 42,
-                height: 1.25,
-                fontWeight: FontWeight.w600,
-                color: Color(WebColorAsset.textWhite),
-              ),
-              bodyMedium: TextStyle(
-                fontSize: 24,
-                height: 1.25,
-                fontWeight: FontWeight.w500,
-                color: Color(WebColorAsset.textWhite),
-              ),
-            ),
+                displayLarge: TextStyle(
+                  fontSize: 60,
+                  height: 1.25,
+                  fontWeight: FontWeight.w700,
+                  color: Color(WebColorAsset.textWhite),
+                ),
+                titleLarge: TextStyle(
+                  fontSize: 48,
+                  height: 1.25,
+                  fontWeight: FontWeight.w700,
+                  color: Color(WebColorAsset.textWhite),
+                ),
+                titleMedium: TextStyle(
+                  fontSize: 42,
+                  height: 1.25,
+                  fontWeight: FontWeight.w600,
+                  color: Color(WebColorAsset.textWhite),
+                ),
+                bodyMedium: TextStyle(
+                  fontSize: 28,
+                  height: 1.25,
+                  fontWeight: FontWeight.w500,
+                  color: Color(WebColorAsset.textWhite),
+                ),
+                labelSmall: TextStyle(
+                  fontSize: 16,
+                  height: 1.25,
+                  fontWeight: FontWeight.w300,
+                  color: Color(WebColorAsset.textWhite),
+                )),
           ),
           child: LayoutBuilder(builder: (context, constraints) {
-            if (constraints.minWidth < 1560) {
-              return const RestrictView();
-            }
-            return SizedBox(
-              child: child,
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaleFactor: constraints.maxHeight / 1270,
+              ),
+              child: Builder(builder: (context) {
+                if (constraints.minWidth < 1270) {
+                  return const RestrictView();
+                }
+                return SizedBox(
+                  child: child,
+                );
+              }),
             );
           }),
         );
