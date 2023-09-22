@@ -32,6 +32,7 @@
 .pub/
 /build/
 .firebase/
+firebase_options.dart
 
 # Web related
 
