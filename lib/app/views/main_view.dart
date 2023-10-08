@@ -1,6 +1,8 @@
 import 'package:dishank_dev_resume_website/app/utilities/color_assets.dart';
+import 'package:dishank_dev_resume_website/app/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/app/views/commons/position_dot_module/position_dot_module.dart';
 import 'package:dishank_dev_resume_website/app/views/commons/web_header/web_header_module.dart';
+import 'package:dishank_dev_resume_website/app/views/contact_view/contact_view.dart';
 import 'package:dishank_dev_resume_website/app/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 
@@ -32,14 +34,21 @@ class _MainWebViewState extends State<MainWebView> {
       SizedBox(
         width: size.width,
         height: size.height,
-        child: const WebHomeView(),
+        child: const HomeView(),
       ),
       SizedBox(
         width: size.width,
         height: size.height,
         child: Container(
           alignment: Alignment.center,
-          color: const Color(WebColorAsset.bgBlack),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(WebImageAssets.background2),
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+            ),
+            color: Color(WebColorAsset.bgBlack),
+          ),
           child: Text(
             'Working on it...',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
@@ -56,7 +65,14 @@ class _MainWebViewState extends State<MainWebView> {
         height: size.height,
         child: Container(
           alignment: Alignment.center,
-          color: const Color(WebColorAsset.bgBlack),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(WebImageAssets.background3),
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+            ),
+            color: Color(WebColorAsset.bgBlack),
+          ),
           child: Text(
             'Working on it...',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
@@ -73,7 +89,14 @@ class _MainWebViewState extends State<MainWebView> {
         height: size.height,
         child: Container(
           alignment: Alignment.center,
-          color: const Color(WebColorAsset.bgBlack),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(WebImageAssets.background4),
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+            ),
+            color: Color(WebColorAsset.bgBlack),
+          ),
           child: Text(
             'Working on it...',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
@@ -88,19 +111,7 @@ class _MainWebViewState extends State<MainWebView> {
       SizedBox(
         width: size.width,
         height: size.height,
-        child: Container(
-          alignment: Alignment.center,
-          color: const Color(WebColorAsset.bgBlack),
-          child: Text(
-            'Working on it...',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(shadows: [
-              const Shadow(
-                color: Colors.black26,
-                blurRadius: 4,
-              ),
-            ]),
-          ),
-        ),
+        child: const ContactView(),
       ),
     ];
   }

@@ -15,7 +15,7 @@ class RestrictView extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(WebImageAssets.homeBg),
+            image: AssetImage(WebImageAssets.background1),
             alignment: Alignment.topLeft,
             fit: BoxFit.cover,
           ),

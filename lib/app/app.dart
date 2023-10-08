@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:dishank_dev_resume_website/app/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/app/views/main_view.dart';
 import 'package:dishank_dev_resume_website/app/views/restrict_view/restrict_view.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final GlobalKey<NavigatorState> navState = GlobalKey();
 
@@ -11,7 +12,6 @@ class WebApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return WidgetsApp(
       title: 'Dishank Jindal | Mobile Software Engineer',
       color: Colors.teal,
@@ -54,6 +54,12 @@ class WebApp extends StatelessWidget {
                   height: 1.25,
                   fontWeight: FontWeight.w600,
                   color: Color(WebColorAsset.textWhite),
+                ),
+                headlineMedium: TextStyle(
+                  fontSize: 36,
+                  height: 1.25,
+                  fontWeight: FontWeight.w700,
+                  color: Color(WebColorAsset.textYellow),
                 ),
                 bodyMedium: TextStyle(
                   fontSize: 28,

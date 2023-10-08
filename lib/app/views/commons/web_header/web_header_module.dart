@@ -1,5 +1,7 @@
 import 'package:dishank_dev_resume_website/app/utilities/color_assets.dart';
+import 'package:dishank_dev_resume_website/app/utilities/global_keys.dart';
 import 'package:dishank_dev_resume_website/app/utilities/image_assets.dart';
+import 'package:dishank_dev_resume_website/app/views/commons/buttons/buttton_highlight_on_hover.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -17,10 +19,11 @@ class WebHeaderModule extends StatelessWidget {
       'Experience': () => pageController.jumpToPage(2),
       'Certification': () => pageController.jumpToPage(3),
       'Contact': () => pageController.jumpToPage(4),
-      'HireMe': null,
+      'Ping Me': null,
     };
 
     return Material(
+      key: WebGlobalKey.headerKey,
       type: MaterialType.transparency,
       child: Container(
         padding: const EdgeInsets.all(24),
@@ -51,60 +54,13 @@ class WebHeaderModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(data.length, (index) {
                     if (index == data.length - 1) {
-                      return Builder(builder: (context) {
-                        bool isHovering = false;
-                        return StatefulBuilder(builder: (context, miniState) {
-                          return MouseRegion(
-                            onHover: (_) {
-                              miniState(() {
-                                isHovering = true;
-                              });
-                            },
-                            onExit: (_) {
-                              miniState(() {
-                                isHovering = false;
-                              });
-                            },
-                            child: SizedBox(
-                              height: 68,
-                              width: size.width * 0.1,
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      isHovering
-                                          ? const Color(WebColorAsset.bgYellow)
-                                          : const Color(WebColorAsset.bgBlack)),
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 2,
-                                        color: Color(WebColorAsset.bgYellow),
-                                      ),
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () => launchUrlString(
-                                  'https://www.linkedin.com/in/dishankjindal/',
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                                child: Text(
-                                  'Ping Me',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: isHovering
-                                            ? const Color(WebColorAsset.bgBlack)
-                                            : const Color(
-                                                WebColorAsset.textWhite),
-                                      ),
-                                ),
-                              ),
-                            ),
-                          );
-                        });
-                      });
+                      return ButtonHighlightOnHover.dark(
+                        'Ping Me',
+                        callback: () => launchUrlString(
+                          'https://www.linkedin.com/in/dishankjindal/',
+                          mode: LaunchMode.externalApplication,
+                        ),
+                      );
                     }
 
                     final item = data.entries.elementAt(index);
