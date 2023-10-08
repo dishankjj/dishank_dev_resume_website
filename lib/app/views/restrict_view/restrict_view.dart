@@ -1,5 +1,6 @@
 import 'package:dishank_dev_resume_website/app/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/app/utilities/image_assets.dart';
+import 'package:dishank_dev_resume_website/app/views/commons/gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 
@@ -30,7 +31,7 @@ class RestrictView extends StatelessWidget {
                 const Image(
                   image: AssetImage(WebImageAssets.logo),
                 ),
-                const SizedBox(height: 24),
+                const Gap(24),
                 Text(
                   'Please view it on Desktop!\nMobile version is coming soon.',
                   textAlign: TextAlign.center,

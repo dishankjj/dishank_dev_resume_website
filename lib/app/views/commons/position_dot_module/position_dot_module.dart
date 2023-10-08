@@ -10,32 +10,39 @@ class WebPositionDotModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-        listenable: pageController,
-        builder: (context, _) {
-          return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                totalPages,
-                (index) => InkWell(
-                  onTap: () {
-                    pageController.animateToPage(index,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeOut);
-                  },
-                  child: SizedBox.square(
-                    dimension: 12,
-                    child: Transform.scale(
-                      scale: (pageController.page ?? 0) == index ? 1 : 0.6,
-                      child: CircleAvatar(
-                        backgroundColor: (pageController.page ?? 0) == index
-                            ? const Color(WebColorAsset.bgOrange)
-                            : const Color(WebColorAsset.bgWhite),
-                      ),
-                    ),
-                  ),
-                ),
-              ));
-        });
+    return Align(
+        alignment: const Alignment(0.975, 0.95),
+        child: SizedBox(
+            height: 100,
+            width: 12,
+            child: ListenableBuilder(
+                listenable: pageController,
+                builder: (context, _) {
+                  return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(
+                        totalPages,
+                        (index) => InkWell(
+                          onTap: () {
+                            pageController.animateToPage(index,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeOut);
+                          },
+                          child: SizedBox.square(
+                            dimension: 12,
+                            child: Transform.scale(
+                              scale:
+                                  (pageController.page ?? 0) == index ? 1 : 0.6,
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    (pageController.page ?? 0) == index
+                                        ? const Color(WebColorAsset.bgOrange)
+                                        : const Color(WebColorAsset.bgWhite),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ));
+                })));
   }
 }

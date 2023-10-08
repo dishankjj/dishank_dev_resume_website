@@ -136,21 +136,10 @@ class _MainWebViewState extends State<MainWebView> {
           },
           itemCount: children.length,
         ),
-        SizedBox(
-          height: 150,
-          width: size.width,
-          child: WebHeaderModule(pageController),
-        ),
-        Align(
-          alignment: const Alignment(0.975, 0.95),
-          child: SizedBox(
-            height: 100,
-            width: 12,
-            child: WebPositionDotModule(
-              pageController,
-              totalPages: children.length,
-            ),
-          ),
+        WebHeaderModule(pageController),
+        WebPositionDotModule(
+          pageController,
+          totalPages: children.length,
         )
       ]),
     );

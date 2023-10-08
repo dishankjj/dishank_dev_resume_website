@@ -26,6 +26,10 @@ class WebHeaderModule extends StatelessWidget {
       key: WebGlobalKey.headerKey,
       type: MaterialType.transparency,
       child: Container(
+        constraints: BoxConstraints(
+          minHeight: 48,
+          maxHeight: size.height * 0.2,
+        ),
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: const Color(WebColorAsset.bgBlack),
@@ -36,12 +40,9 @@ class WebHeaderModule extends StatelessWidget {
           ),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          SizedBox(
-            height: size.height,
-            child: const Image(
-              image: AssetImage(WebImageAssets.logo),
-              fit: BoxFit.fitHeight,
-            ),
+          const Image(
+            image: AssetImage(WebImageAssets.logo),
+            fit: BoxFit.fitHeight,
           ),
           const Spacer(),
           SizedBox(

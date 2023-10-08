@@ -17,35 +17,35 @@ class BeInTouchModule extends StatelessWidget {
           'Be in touch with',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const Gap(48),
+        const Gap(36),
         Wrap(
-          spacing: 48 * 2,
+          spacing: 48,
           runSpacing: 48,
           children: [
             const Image(
               image: AssetImage(WebImageAssets.discord),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
             const Image(
               image: AssetImage(WebImageAssets.github),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
             const Image(
               image: AssetImage(WebImageAssets.gmail),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
             const Image(
               image: AssetImage(WebImageAssets.insta),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
             const Image(
               image: AssetImage(WebImageAssets.linkedin),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
             const Image(
               image: AssetImage(WebImageAssets.x),
               fit: BoxFit.contain,
-            ).size(82),
+            ).size(60),
           ],
         ).padding(
           EdgeInsets.symmetric(

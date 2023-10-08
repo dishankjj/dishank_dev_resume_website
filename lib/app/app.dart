@@ -61,6 +61,12 @@ class WebApp extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   color: Color(WebColorAsset.textYellow),
                 ),
+                headlineSmall: TextStyle(
+                  fontSize: 32,
+                  height: 1.25,
+                  fontWeight: FontWeight.w600,
+                  color: Color(WebColorAsset.textWhite),
+                ),
                 bodyMedium: TextStyle(
                   fontSize: 28,
                   height: 1.25,

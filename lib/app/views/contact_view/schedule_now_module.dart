@@ -22,15 +22,15 @@ class ScheduleNowModule extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Gap.width(48 * 2),
+            const Gap.width(24),
             Text(
               'Interested in working together? Let’s plan a conversation',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: const Color(WebColorAsset.bgBlack),
                   ),
             ),
-            const Gap(48),
+            const Gap.width(48 * 2),
             ButtonHighlightOnHover.light(
               'Schedule Now',
               callback: () => launchUrlString(
@@ -38,7 +38,7 @@ class ScheduleNowModule extends StatelessWidget {
                 mode: LaunchMode.externalApplication,
               ),
             ),
-            const Gap.width(48 * 2),
+            const Gap.width(24),
           ],
         ),
       ),
