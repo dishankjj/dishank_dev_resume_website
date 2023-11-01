@@ -7,11 +7,11 @@ class Gap extends StatelessWidget {
   })  : height = null,
         width = null;
 
-  const Gap.width(this.width, {super.key})
+  const Gap.w(this.width, {super.key})
       : dimension = null,
         height = null;
 
-  const Gap.height(this.height, {super.key})
+  const Gap.h(this.height, {super.key})
       : dimension = null,
         width = null;
 

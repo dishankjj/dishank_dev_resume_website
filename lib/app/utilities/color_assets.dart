@@ -5,4 +5,5 @@ class WebColorAsset {
   static const int bgWhite = 0xFFFFFFFF;
   static const int textWhite = 0xFFFFFFFF;
   static const int bgOrange = 0xFFDDB26D;
+  static const int menu = 0xFF3C3A3A;
 }

@@ -33,7 +33,7 @@ class RestrictView extends StatelessWidget {
                 ),
                 const Gap(24),
                 Text(
-                  'Please view it on Desktop!\nMobile version is coming soon.',
+                  'Please view after some time!\ncoming soon.',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),

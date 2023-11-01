@@ -136,7 +136,7 @@ class _MainWebViewState extends State<MainWebView> {
           },
           itemCount: children.length,
         ),
-        WebHeaderModule(pageController),
+        HeaderView(pageController),
         WebPositionDotModule(
           pageController,
           totalPages: children.length,
