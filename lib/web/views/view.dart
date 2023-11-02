@@ -117,6 +117,7 @@ class _MainViewState extends State<MainView> {
         type: MaterialType.transparency,
         child: Stack(children: [
           PageView.builder(
+            physics: const ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
             controller: pageController,
             itemBuilder: (context, index) {

@@ -17,7 +17,7 @@ class AppText {
 
   /// CONTACT
   static const contacttext1 =
-      'Interested in working together? Let’s plan a conversation';
+      'Interested in working together?\nLet’s plan a conversation';
   static const contacttext2 = 'Schedule Now';
   static const contacttext3 = 'Be in touch with';
 }

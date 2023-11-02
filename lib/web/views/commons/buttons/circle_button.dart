@@ -6,10 +6,9 @@ class AppCircleButton extends StatefulWidget {
   final TextStyle? labelStyle;
   final VoidCallback callback;
   final int highlightColor;
-  final int? bgColor;
+  final Color? bgColor;
   final int borderColor;
   final double borderRadius;
-  final Size? size;
   final EdgeInsets? padding;
   const AppCircleButton({
     required this.label,
@@ -19,7 +18,6 @@ class AppCircleButton extends StatefulWidget {
     this.bgColor,
     required this.borderColor,
     required this.borderRadius,
-    this.size,
     this.padding,
     super.key,
   });
@@ -58,9 +56,8 @@ class _AppCircleButtonState extends State<AppCircleButton> {
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
         ),
-        fixedSize: MaterialStatePropertyAll(widget.size),
         backgroundColor:
-            MaterialStatePropertyAll(Color(widget.bgColor ?? 0x00)),
+            MaterialStatePropertyAll(widget.bgColor ?? Colors.transparent),
         overlayColor: MaterialStatePropertyAll(Color(widget.highlightColor)),
       ),
       onPressed: widget.callback,
