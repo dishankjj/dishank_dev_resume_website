@@ -1,4 +1,4 @@
-import 'package:dishank_dev_resume_website/app/app.dart';
+import 'package:dishank_dev_resume_website/web/app.dart';
 import 'package:dishank_dev_resume_website/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
