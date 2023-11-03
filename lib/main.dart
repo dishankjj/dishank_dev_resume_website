@@ -2,6 +2,7 @@ import 'package:dishank_dev_resume_website/web/app.dart';
 import 'package:dishank_dev_resume_website/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -9,7 +10,9 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  incrementCount();
+  if (kReleaseMode) {
+    incrementCount();
+  }
 
   runApp(const WebApp());
 }

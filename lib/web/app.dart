@@ -36,7 +36,7 @@ class WebApp extends StatelessWidget {
 
         return Theme(
             data: ThemeData(
-              textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+              textTheme: GoogleFonts.robotoTextTheme().copyWith(
                 displayLarge: const TextStyle(
                   fontSize: 48,
                   height: 1.25,

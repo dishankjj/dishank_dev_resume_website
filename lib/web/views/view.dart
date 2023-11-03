@@ -6,6 +6,7 @@ import 'package:dishank_dev_resume_website/web/views/certification/certification
 import 'package:dishank_dev_resume_website/web/views/commons/position_dot_module/position_dot_module.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/header/header_view.dart';
 import 'package:dishank_dev_resume_website/web/views/contact/contact_view.dart';
+import 'package:dishank_dev_resume_website/web/views/expertise/expertise_view.dart';
 import 'package:dishank_dev_resume_website/web/views/home/home_view.dart';
 import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class _MainViewState extends State<MainView> {
     pageController = PageController(initialPage: 0);
     _menuButtonCtrl = OverlayPortalController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      pageController.animateToPage(1,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.decelerate);
       initalizer();
     });
   }
@@ -51,22 +55,7 @@ class _MainViewState extends State<MainView> {
       SizedBox(
         width: size.width,
         height: size.height,
-        child: Container(
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(WebImageAssets.background2),
-              fit: BoxFit.cover,
-              alignment: Alignment.center,
-            ),
-            color: Color(AppColor.bgBlack),
-          ),
-          child: context.layout(
-            mobile: const RestrictView(withBg: false),
-            tablet: const RestrictView(withBg: false),
-            web: const RestrictView(withBg: false),
-          ),
-        ),
+        child: const ExpertiseView(),
       ),
       SizedBox(
         width: size.width,

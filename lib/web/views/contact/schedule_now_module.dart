@@ -47,7 +47,7 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
               'Interested in working together? Let’s plan a conversation',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    color: const Color(AppColor.bgBlack),
+                    color: const Color(AppColor.textBlack),
                   ),
             ),
             const Gap.w(48 * 2),
@@ -85,7 +85,7 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
                                         MaterialState.hovered,
                                         MaterialState.pressed
                                       ].any((element) => element == state))
-                                  ? const Color(AppColor.bgBlack)
+                                  ? const Color(AppColor.textBlack)
                                   : null),
                     ),
                   );
@@ -126,6 +126,7 @@ class _ScheduleNowMobileViewState extends State<ScheduleNowMobileView> {
 
     return Align(
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           color: const Color(AppColor.bgWhite),
           borderRadius: BorderRadius.circular(12),
