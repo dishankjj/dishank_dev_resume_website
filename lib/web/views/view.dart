@@ -1,14 +1,11 @@
-import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
-import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
-import 'package:dishank_dev_resume_website/web/utilities/ui_extensions.dart';
 import 'package:dishank_dev_resume_website/web/views/certification/certification_view.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/position_dot_module/position_dot_module.dart';
+import 'package:dishank_dev_resume_website/web/views/commons/page_dot/page_dot_module.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/header/header_view.dart';
 import 'package:dishank_dev_resume_website/web/views/contact/contact_view.dart';
+import 'package:dishank_dev_resume_website/web/views/experience/experience_view.dart';
 import 'package:dishank_dev_resume_website/web/views/expertise/expertise_view.dart';
 import 'package:dishank_dev_resume_website/web/views/home/home_view.dart';
-import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -22,16 +19,16 @@ class _MainViewState extends State<MainView> {
   late Size size;
   late List<Widget> children;
 
-  late final PageController pageController;
+  late final PageController rootPageController;
   late final OverlayPortalController _menuButtonCtrl;
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 0);
+    rootPageController = PageController(initialPage: 0);
     _menuButtonCtrl = OverlayPortalController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      pageController.animateToPage(1,
+      rootPageController.animateToPage(3,
           duration: const Duration(milliseconds: 600),
           curve: Curves.decelerate);
       initalizer();
@@ -60,27 +57,14 @@ class _MainViewState extends State<MainView> {
       SizedBox(
         width: size.width,
         height: size.height,
-        child: Container(
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(WebImageAssets.background3),
-              fit: BoxFit.cover,
-              alignment: Alignment.center,
-            ),
-            color: Color(AppColor.bgBlack),
-          ),
-          child: context.layout(
-            mobile: const RestrictView(withBg: false),
-            tablet: const RestrictView(),
-            web: const RestrictView(),
-          ),
-        ),
+        child: const ExperienceView(),
       ),
       SizedBox(
         width: size.width,
         height: size.height,
-        child: const CertificationView(),
+        child: CertificationView(
+          rootPageController: rootPageController,
+        ),
       ),
       SizedBox(
         width: size.width,
@@ -92,7 +76,7 @@ class _MainViewState extends State<MainView> {
 
   @override
   void dispose() {
-    pageController.dispose();
+    rootPageController.dispose();
     super.dispose();
   }
 
@@ -108,7 +92,7 @@ class _MainViewState extends State<MainView> {
           PageView.builder(
             physics: const ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            controller: pageController,
+            controller: rootPageController,
             itemBuilder: (context, index) {
               return children[index];
             },
@@ -116,12 +100,15 @@ class _MainViewState extends State<MainView> {
           ),
           HeaderView(
             key: AppGlobalKey.headerKey,
-            pageController,
+            rootPageController,
             _menuButtonCtrl,
           ),
-          PageDotModule(
-            pageController,
-            totalPages: children.length,
+          Align(
+            alignment: const Alignment(0.95, 0.95),
+            child: PageDotModule.vertical(
+              rootPageController,
+              totalPages: children.length,
+            ),
           )
         ]),
       ),

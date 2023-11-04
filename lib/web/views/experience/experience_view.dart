@@ -1,31 +1,34 @@
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
+import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/ui_extensions.dart';
-import 'package:dishank_dev_resume_website/web/views/expertise/platform/mobile_exertise_view.dart';
+import 'package:dishank_dev_resume_website/web/views/experience/platform/mobile_experience_view.dart';
 import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
 import 'package:flutter/material.dart';
 
-class ExpertiseView extends StatefulWidget {
-  const ExpertiseView({super.key});
+class ExperienceView extends StatelessWidget {
+  const ExperienceView({super.key});
 
-  @override
-  State<ExpertiseView> createState() => _ExpertiseViewState();
-}
-
-class _ExpertiseViewState extends State<ExpertiseView> {
   @override
   Widget build(BuildContext context) {
+    const data = [
+      AppText.experiencedata1,
+      AppText.experiencedata2,
+      AppText.experiencedata3,
+      AppText.experiencedata4,
+    ];
+
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(WebImageAssets.background2),
+          image: AssetImage(WebImageAssets.background3),
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
         color: Color(AppColor.bgBlack),
       ),
       child: context.layout(
-        mobile: const MobileExpertiseView(),
+        mobile: const MobileExperienceView(data: data),
         tablet: const RestrictView(withBg: false),
         web: const RestrictView(withBg: false),
       ),
