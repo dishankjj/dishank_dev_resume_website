@@ -28,7 +28,7 @@ class _MainViewState extends State<MainView> {
     rootPageController = PageController(initialPage: 0);
     _menuButtonCtrl = OverlayPortalController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      rootPageController.animateToPage(3,
+      rootPageController.animateToPage(0,
           duration: const Duration(milliseconds: 600),
           curve: Curves.decelerate);
       initalizer();
