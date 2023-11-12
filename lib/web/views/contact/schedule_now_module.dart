@@ -156,7 +156,10 @@ class _ScheduleNowMobileViewState extends State<ScheduleNowMobileView> {
               highlightColor: AppColor.bgYellow,
               borderColor: AppColor.bgYellow,
               borderRadius: 48,
-              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 24),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 36,
+                vertical: 24,
+              ),
             ),
             const Gap.h(24),
           ],

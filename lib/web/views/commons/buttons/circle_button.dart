@@ -67,12 +67,13 @@ class _AppCircleButtonState extends State<AppCircleButton> {
             return Text(
               widget.label,
               style: widget.labelStyle?.copyWith(
-                  color: _controller.value.any((state) => [
-                            MaterialState.hovered,
-                            MaterialState.pressed
-                          ].any((element) => element == state))
-                      ? const Color(AppColor.bgBlack)
-                      : null),
+                color: _controller.value.any((state) => [
+                          MaterialState.hovered,
+                          MaterialState.pressed
+                        ].any((element) => element == state))
+                    ? const Color(AppColor.bgBlack)
+                    : null,
+              ),
             );
           }),
     );

@@ -1,4 +1,5 @@
 import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dart';
+import 'package:dishank_dev_resume_website/web/views/contact/platform/mobile_contact_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -26,28 +27,10 @@ class ContactView extends StatelessWidget {
         color: Color(AppColor.bgBlack),
       ),
       child: context.layout(
-        mobile: const ContactViewMobileModule(),
+        mobile: const MobileContactView(),
         tablet: const RestrictView(withBg: false),
         web: const RestrictView(withBg: false),
       ),
-    );
-  }
-}
-
-class ContactViewMobileModule extends StatelessWidget {
-  const ContactViewMobileModule({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        HeaderFill(spacer: 32),
-        ScheduleNowMobileView(),
-        Gap(48),
-        BeInTouchModule(),
-        Spacer(),
-        Footer(),
-      ],
     );
   }
 }

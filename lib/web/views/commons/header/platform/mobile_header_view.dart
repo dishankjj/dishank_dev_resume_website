@@ -73,10 +73,6 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
                 highlightColor: AppColor.bgYellow,
                 borderColor: AppColor.bgYellow,
                 borderRadius: 24,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 16,
-                ),
               ),
               const Gap.w(24),
               InkWell(
