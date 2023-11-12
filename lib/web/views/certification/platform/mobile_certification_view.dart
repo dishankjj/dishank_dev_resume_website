@@ -14,49 +14,19 @@ class MobileCertificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-
     return Column(
       children: [
-        const HeaderFill(spacer: 24),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  AppText.certificationtext1,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        height: 0.5,
-                      ),
+        const HeaderFill(space: 32),
+        const Gap(60),
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            AppText.certificationtext1,
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  height: 0.5,
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: size.width * 0.5,
-                  height: 1,
-                  margin: const EdgeInsets.only(left: 24),
-                  color: const Color(AppColor.bgYellow),
-                ),
-              ),
-              const Gap(4),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: size.width * 0.5,
-                  height: 1,
-                  margin: const EdgeInsets.only(right: 48),
-                  color: const Color(AppColor.bgYellow),
-                ),
-              ),
-            ],
           ),
         ),
-        const Gap(48),
         const Gap(48),
         Expanded(
           child: PageView.builder(
@@ -78,13 +48,15 @@ class MobileCertificationView extends StatelessWidget {
                             type: MaterialType.transparency,
                             child: GestureDetector(
                               onTap: () => Navigator.pop(context),
-                              child: Align(
-                                child: Container(
-                                  margin: const EdgeInsets.all(24),
-                                  child: Image.network(
-                                    AppUrl.certificateUrl(index),
-                                    fit: BoxFit.fitWidth,
-                                    alignment: Alignment.topLeft,
+                              child: InteractiveViewer(
+                                child: Align(
+                                  child: Container(
+                                    margin: const EdgeInsets.all(24),
+                                    child: Image.network(
+                                      AppUrl.certificateUrl(index),
+                                      fit: BoxFit.fitWidth,
+                                      alignment: Alignment.topLeft,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -109,8 +81,7 @@ class MobileCertificationView extends StatelessWidget {
                         AppUrl.certificateUrl(index),
                         fit: BoxFit.cover,
                         alignment: Alignment.center,
-                        cacheHeight: 50,
-                        cacheWidth: 50,
+                        filterQuality: FilterQuality.high,
                       ),
                     ),
                   ),
@@ -120,6 +91,7 @@ class MobileCertificationView extends StatelessWidget {
             itemCount: 9,
           ),
         ),
+        // Spacer(),
         const Gap(48 * 2),
       ],
     );

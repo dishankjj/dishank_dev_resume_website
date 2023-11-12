@@ -12,7 +12,7 @@ class MobileContactView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        HeaderFill(spacer: 32),
+        HeaderFill(space: 32),
         ScheduleNowMobileView(),
         Gap(48),
         BeInTouchModule(),

@@ -2,16 +2,16 @@ import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:flutter/widgets.dart';
 
 class HeaderFill extends StatelessWidget {
-  final double spacer;
+  final double space;
   const HeaderFill({
-    this.spacer = 0,
+    this.space = 0,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: spacer +
+      height: space +
           ((AppGlobalKey.headerKey.currentContext?.findRenderObject()
                       as RenderBox?)
                   ?.size

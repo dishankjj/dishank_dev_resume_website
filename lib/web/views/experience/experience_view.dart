@@ -15,7 +15,6 @@ class ExperienceView extends StatelessWidget {
       AppText.experiencedata1,
       AppText.experiencedata2,
       AppText.experiencedata3,
-      AppText.experiencedata4,
     ];
 
     return Container(

@@ -48,7 +48,7 @@ class ContactViewWebModule extends StatelessWidget {
           height: size.height,
           child: const Column(
             children: [
-              HeaderFill(spacer: 8),
+              HeaderFill(space: 8),
               Expanded(child: ScheduleNowWebView()),
               Gap(48),
               Expanded(child: BeInTouchModule()),

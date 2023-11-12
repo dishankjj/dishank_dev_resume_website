@@ -29,10 +29,12 @@ class InfoCard extends StatelessWidget {
       child: Container(
         width: size.width * 0.3,
         height: 80,
+        padding: const EdgeInsets.all(8),
         alignment: Alignment.center,
         child: Text(
           label,
           textAlign: TextAlign.center,
+          maxLines: 2,
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 color: Color(textColor),
               ),
