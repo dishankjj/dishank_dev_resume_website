@@ -61,7 +61,7 @@ class MobileExpertiseView extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
-                childAspectRatio: 16 / 9,
+                childAspectRatio: 2,
               ),
               children: const [
                 InfoCard.light(label: AppText.expertisetext1l),

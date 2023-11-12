@@ -50,6 +50,7 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
             child: DropDownMenuWidget(
               widget.pageController,
               headerMenuItems: widget.menuItems,
+              menuButtonCtrl: widget.menuButtonCtrl,
             ),
           );
         },

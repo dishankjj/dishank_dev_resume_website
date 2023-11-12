@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class DropDownMenuWidget extends StatelessWidget {
   final PageController pageController;
   final Map<String, VoidCallback> headerMenuItems;
+  final OverlayPortalController menuButtonCtrl;
 
   const DropDownMenuWidget(
     this.pageController, {
     required this.headerMenuItems,
+    required this.menuButtonCtrl,
     super.key,
   });
 
@@ -29,7 +31,10 @@ class DropDownMenuWidget extends StatelessWidget {
         children: [
           for (var index = 0; index < totalCount; index++)
             TextButton(
-              onPressed: callbacks[index],
+              onPressed: () {
+                callbacks[index]();
+                menuButtonCtrl.hide();
+              },
               child: ListenableBuilder(
                 listenable: pageController,
                 builder: (context, _) {
