@@ -1,4 +1,3 @@
-import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:dishank_dev_resume_website/web/views/certification/certification_view.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/page_dot/page_dot_module.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/header/header_view.dart';
@@ -99,7 +98,6 @@ class _MainViewState extends State<MainView> {
             itemCount: children.length,
           ),
           HeaderView(
-            key: AppGlobalKey.headerKey,
             rootPageController,
             _menuButtonCtrl,
           ),
@@ -109,7 +107,7 @@ class _MainViewState extends State<MainView> {
               rootPageController,
               totalPages: children.length,
             ),
-          )
+          ),
         ]),
       ),
     );

@@ -39,7 +39,7 @@ class WebHeaderView extends StatelessWidget {
           ),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          const Image(image: AssetImage(WebImageAssets.logo)),
+          const Image(image: AssetImage(ImageAssets.logo)),
           const Spacer(),
           ListenableBuilder(
             listenable: pageController,
@@ -48,16 +48,26 @@ class WebHeaderView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ...List.generate(menuItems.length, (index) {
-                    return AppTextButton(
-                      label: menuItems.keys.toList()[index],
-                      labelStyle: Theme.of(context).textTheme.bodyMedium,
-                      textHighlightColor: AppColor.bgYellow,
-                      callback: menuItems.values.toList()[index],
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: ListenableBuilder(
+                          listenable: pageController,
+                          builder: (context, _) {
+                            return AppTextButton(
+                              isSelected:
+                                  (pageController.page?.round() ?? 0) == index,
+                              label: menuItems.keys.toList()[index],
+                              labelStyle:
+                                  Theme.of(context).textTheme.titleLarge,
+                              textHighlightColor: AppColor.bgYellow,
+                              callback: menuItems.values.toList()[index],
+                            );
+                          }),
                     );
                   }),
                   AppCircleButton(
                     label: AppText.pingMe,
-                    labelStyle: Theme.of(context).textTheme.bodyMedium,
+                    labelStyle: Theme.of(context).textTheme.titleLarge,
                     callback: () => launchUrlString(
                       AppUrl.linkedin,
                       mode: LaunchMode.externalApplication,
@@ -65,6 +75,8 @@ class WebHeaderView extends StatelessWidget {
                     highlightColor: AppColor.bgYellow,
                     borderColor: AppColor.bgYellow,
                     borderRadius: 48,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 36, vertical: 24),
                   )
                 ],
               );

@@ -23,7 +23,7 @@ class RestrictView extends StatelessWidget {
         decoration: withBg
             ? const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(WebImageAssets.background1),
+                  image: AssetImage(ImageAssets.background1),
                   alignment: Alignment.topLeft,
                   fit: BoxFit.cover,
                 ),
@@ -37,7 +37,7 @@ class RestrictView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Image(
-                  image: AssetImage(WebImageAssets.logo),
+                  image: AssetImage(ImageAssets.logo),
                 ),
                 const Gap(24),
                 Text(

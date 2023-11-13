@@ -5,14 +5,14 @@ import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class ScheduleNowWebView extends StatefulWidget {
-  const ScheduleNowWebView({super.key});
+class WebScheduleNowModule extends StatefulWidget {
+  const WebScheduleNowModule({super.key});
 
   @override
-  State<ScheduleNowWebView> createState() => _ScheduleNowWebViewState();
+  State<WebScheduleNowModule> createState() => _WebScheduleNowModuleState();
 }
 
-class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
+class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
   late final MaterialStatesController buttonState;
 
   @override
@@ -44,13 +44,13 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
           children: [
             const Gap.w(24),
             Text(
-              'Interested in working together? Let’s plan a conversation',
+              AppText.contacttext1,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: const Color(AppColor.textBlack),
                   ),
             ),
-            const Gap.w(48 * 2),
+            const Gap.w(60),
             ListenableBuilder(
                 listenable: buttonState,
                 builder: (context, _) {
@@ -62,7 +62,7 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
                       shape: MaterialStatePropertyAll(
                         RoundedRectangleBorder(
                           side: const BorderSide(
-                              width: 2, color: Color(AppColor.bgYellow)),
+                              width: 4, color: Color(AppColor.bgYellow)),
                           borderRadius: BorderRadius.circular(48),
                         ),
                       ),
@@ -77,16 +77,13 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
                     ),
                     child: Text(
                       'Schedule Now',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall
-                          ?.copyWith(
-                              color: buttonState.value.any((state) => [
-                                        MaterialState.hovered,
-                                        MaterialState.pressed
-                                      ].any((element) => element == state))
-                                  ? const Color(AppColor.textBlack)
-                                  : null),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: buttonState.value.any((state) => [
+                                    MaterialState.hovered,
+                                    MaterialState.pressed
+                                  ].any((element) => element == state))
+                              ? const Color(AppColor.textBlack)
+                              : null),
                     ),
                   );
                 }),
@@ -98,14 +95,14 @@ class _ScheduleNowWebViewState extends State<ScheduleNowWebView> {
   }
 }
 
-class ScheduleNowMobileView extends StatefulWidget {
-  const ScheduleNowMobileView({super.key});
+class MobileScheduleModule extends StatefulWidget {
+  const MobileScheduleModule({super.key});
 
   @override
-  State<ScheduleNowMobileView> createState() => _ScheduleNowMobileViewState();
+  State<MobileScheduleModule> createState() => _MobileScheduleModuleState();
 }
 
-class _ScheduleNowMobileViewState extends State<ScheduleNowMobileView> {
+class _MobileScheduleModuleState extends State<MobileScheduleModule> {
   late final MaterialStatesController buttonState;
 
   @override

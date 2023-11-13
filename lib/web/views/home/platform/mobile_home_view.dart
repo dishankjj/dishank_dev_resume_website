@@ -36,7 +36,7 @@ class MobileHomeView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: circleStroke * 0.5),
                   child: SizedBox.square(
                     dimension: circleSize,
-                    child: Image.asset(WebImageAssets.dpWithYellowRing),
+                    child: Image.asset(ImageAssets.dpWithYellowRing),
                   ),
                 ),
               ),

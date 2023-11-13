@@ -3,6 +3,7 @@ import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/ui_extensions.dart';
 import 'package:dishank_dev_resume_website/web/views/experience/platform/mobile_experience_view.dart';
+import 'package:dishank_dev_resume_website/web/views/experience/platform/web_experience_view.dart';
 import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class ExperienceView extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(WebImageAssets.background3),
+          image: AssetImage(ImageAssets.background3),
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
@@ -29,7 +30,7 @@ class ExperienceView extends StatelessWidget {
       child: context.layout(
         mobile: const MobileExperienceView(data: data),
         tablet: const RestrictView(withBg: false),
-        web: const RestrictView(withBg: false),
+        web: const WebExperienceView(data: data),
       ),
     );
   }

@@ -62,7 +62,7 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
           ),
           child: Row(
             children: [
-              const Image(image: AssetImage(WebImageAssets.logo)),
+              const Image(image: AssetImage(ImageAssets.logo)),
               const Spacer(),
               AppCircleButton(
                 label: AppText.pingMe,
@@ -81,7 +81,7 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
                 onTap: () => widget.menuButtonCtrl.toggle(),
                 child: Image(
                   key: AppGlobalKey.menuKey,
-                  image: const AssetImage(WebImageAssets.menu),
+                  image: const AssetImage(ImageAssets.menu),
                 ),
               ),
             ],

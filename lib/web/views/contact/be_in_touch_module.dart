@@ -20,14 +20,18 @@ class BeInTouchModule extends StatelessWidget {
       web: 60,
     );
 
-    const double iconSpacing = 48;
+    final double iconSpacing = context.layout<double>(
+      mobile: 36,
+      tablet: 36,
+      web: 48,
+    );
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           AppText.contacttext3,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
         const Gap(24),
         Wrap(
@@ -48,7 +52,7 @@ class BeInTouchModule extends StatelessWidget {
                 mode: LaunchMode.externalApplication,
               ),
               child: const Image(
-                image: AssetImage(WebImageAssets.gmail),
+                image: AssetImage(ImageAssets.gmail),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),
@@ -63,7 +67,7 @@ class BeInTouchModule extends StatelessWidget {
                 mode: LaunchMode.externalApplication,
               ),
               child: const Image(
-                image: AssetImage(WebImageAssets.linkedin),
+                image: AssetImage(ImageAssets.linkedin),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),
@@ -73,7 +77,7 @@ class BeInTouchModule extends StatelessWidget {
                 mode: LaunchMode.externalApplication,
               ),
               child: const Image(
-                image: AssetImage(WebImageAssets.x),
+                image: AssetImage(ImageAssets.x),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),

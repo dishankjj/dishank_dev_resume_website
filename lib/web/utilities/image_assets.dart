@@ -1,4 +1,4 @@
-class WebImageAssets {
+class ImageAssets {
   /// Website Global Assets
   static const logo = 'asset/img/logo.png';
   static const dp = 'asset/img/dp.jpeg';
@@ -23,4 +23,7 @@ class WebImageAssets {
   static const menu = 'asset/icon/menu.png';
   static const love = 'asset/icon/love.png';
   static const india = 'asset/icon/india.png';
+
+  /// Views
+  static const experienceView1 = 'asset/img/experience_view_1.png';
 }

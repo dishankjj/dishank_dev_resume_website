@@ -16,7 +16,6 @@ class InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     return Card(
       color: Color(color),
       shape: const RoundedRectangleBorder(
@@ -26,11 +25,7 @@ class InfoCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
-      child: Container(
-        width: size.width * 0.3,
-        height: 80,
-        padding: const EdgeInsets.all(8),
-        alignment: Alignment.center,
+      child: Align(
         child: Text(
           label,
           textAlign: TextAlign.center,

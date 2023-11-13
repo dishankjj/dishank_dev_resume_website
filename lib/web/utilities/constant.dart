@@ -25,8 +25,8 @@ class AppText {
   static const expertisetext3r = 'Localization\ni18n';
   static const expertisetext4l = 'AWS GCP\nAZURE';
   static const expertisetext4r = 'WatchOS\nFlutter Web';
-  static const expertisetext5l = 'Apple Android\nPublishing';
-  static const expertisetext5r = 'Sandbox\nTesting';
+  static const expertisetext5l = 'iOS Android\nPublishing';
+  static const expertisetext5r = 'White Black\nBox Testing';
 
   /// EXPERIENCE
   static const experiencetext1 = 'Over the Years';

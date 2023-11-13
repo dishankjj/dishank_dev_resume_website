@@ -4,10 +4,10 @@ import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dart';
 import 'package:flutter/material.dart';
 
-class MobileCertificationView extends StatelessWidget {
+class WebCertificationView extends StatelessWidget {
   final PageController controller;
 
-  const MobileCertificationView({
+  const WebCertificationView({
     required this.controller,
     super.key,
   });
@@ -29,14 +29,14 @@ class MobileCertificationView extends StatelessWidget {
         ),
         const Gap(48),
         Expanded(
-          child: PageView.builder(
-            controller: PageController(
-              viewportFraction: 0.8,
-            ),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  showGeneralDialog(
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ...List.generate(
+                9,
+                (index) => GestureDetector(
+                  onTap: () {
+                    showGeneralDialog(
                       context: context,
                       pageBuilder: (context, a, b) {
                         return ScaleTransition(
@@ -63,30 +63,31 @@ class MobileCertificationView extends StatelessWidget {
                             ),
                           ),
                         );
-                      });
-                },
-                child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 24),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      width: 2,
-                      color: Color(AppColor.bgYellow),
+                      },
+                    );
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(horizontal: 24),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        width: 2,
+                        color: Color(AppColor.bgYellow),
+                      ),
+                      borderRadius: BorderRadius.circular(24),
                     ),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Image.network(
-                      AppUrl.certificateUrl(index),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.center,
-                      filterQuality: FilterQuality.high,
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Image.network(
+                        AppUrl.certificateUrl(index),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
+                        filterQuality: FilterQuality.high,
+                      ),
                     ),
                   ),
                 ),
-              );
-            },
-            itemCount: 9,
+              ),
+            ],
           ),
         ),
         // Spacer(),

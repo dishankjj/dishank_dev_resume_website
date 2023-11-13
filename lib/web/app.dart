@@ -132,9 +132,9 @@ class WebApp extends StatelessWidget {
             child: MediaQuery(
               data: context.adaptiveLayout(),
               child: context.layout(
-                mobile: SizedBox(child: child),
+                mobile: child!,
                 tablet: const RestrictView(),
-                web: const RestrictView(),
+                web: child,
               ),
             ));
       },

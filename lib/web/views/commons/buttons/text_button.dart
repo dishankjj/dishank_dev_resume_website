@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppTextButton extends StatefulWidget {
+  final bool isSelected;
   final String label;
   final TextStyle? labelStyle;
   final int textHighlightColor;
   final VoidCallback callback;
   final Size? size;
   const AppTextButton({
+    required this.isSelected,
     required this.label,
     this.labelStyle,
     required this.textHighlightColor,
@@ -50,9 +52,9 @@ class _ButtonVariantState extends State<AppTextButton> {
               widget.label,
               style: widget.labelStyle?.copyWith(
                   color: _controller.value.any((state) => [
-                            MaterialState.hovered,
-                            MaterialState.pressed
-                          ].any((element) => element == state))
+                                MaterialState.pressed
+                              ].any((element) => element == state)) ||
+                          widget.isSelected
                       ? Color(widget.textHighlightColor)
                       : null),
             );

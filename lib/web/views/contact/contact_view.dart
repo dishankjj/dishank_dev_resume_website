@@ -20,7 +20,7 @@ class ContactView extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(WebImageAssets.background5),
+          image: AssetImage(ImageAssets.background5),
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
@@ -29,47 +29,23 @@ class ContactView extends StatelessWidget {
       child: context.layout(
         mobile: const MobileContactView(),
         tablet: const RestrictView(withBg: false),
-        web: const RestrictView(withBg: false),
+        web: const WebContactView(),
       ),
     );
   }
 }
 
-class ContactViewWebModule extends StatelessWidget {
-  const ContactViewWebModule({super.key});
+class WebContactView extends StatelessWidget {
+  const WebContactView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    return ListView(
+    return const Column(
       children: [
-        SizedBox(
-          width: size.width,
-          height: size.height,
-          child: const Column(
-            children: [
-              HeaderFill(space: 8),
-              Expanded(child: ScheduleNowWebView()),
-              Gap(48),
-              Expanded(child: BeInTouchModule()),
-            ],
-          ),
-        ),
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(WebImageAssets.background5),
-              fit: BoxFit.cover,
-              alignment: Alignment.topLeft,
-            ),
-            color: Color(AppColor.bgBlack),
-          ),
-          child: context.layout(
-            mobile: const Footer(),
-            tablet: const Footer(),
-            web: const Footer(),
-          ),
-        )
+        HeaderFill(space: 8),
+        Expanded(child: WebScheduleNowModule()),
+        Expanded(child: BeInTouchModule()),
+        Footer(),
       ],
     );
   }
@@ -115,7 +91,7 @@ class Footer extends StatelessWidget {
                   WidgetSpan(
                     child: SizedBox.square(
                       dimension: 12,
-                      child: Image.asset(WebImageAssets.love),
+                      child: Image.asset(ImageAssets.love),
                     ),
                   ),
                   const TextSpan(text: '  | Powered by '),

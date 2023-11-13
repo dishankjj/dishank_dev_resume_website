@@ -4,8 +4,8 @@ import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:dishank_dev_resume_website/web/views/home/hollow_container_painter.dart';
 import 'package:flutter/material.dart';
 
-class HomeViewWebModule extends StatelessWidget {
-  const HomeViewWebModule({super.key});
+class WebHomeView extends StatelessWidget {
+  const WebHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class HomeViewWebModule extends StatelessWidget {
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(WebImageAssets.dpWithYellowRing),
+                          image: AssetImage(ImageAssets.dpWithYellowRing),
                         ),
                       ),
                     ),
@@ -51,7 +51,7 @@ class HomeViewWebModule extends StatelessWidget {
                         'Hi there :)',
                         style: Theme.of(context)
                             .textTheme
-                            .titleLarge
+                            .displayMedium
                             ?.copyWith(shadows: [
                           const Shadow(
                             color: Colors.black26,
@@ -77,7 +77,7 @@ class HomeViewWebModule extends StatelessWidget {
                         'Mobile Software Engineer\nBring your ideas to life with me',
                         style: Theme.of(context)
                             .textTheme
-                            .titleMedium
+                            .displaySmall
                             ?.copyWith(shadows: [
                           const Shadow(
                             color: Colors.black26,
@@ -88,9 +88,11 @@ class HomeViewWebModule extends StatelessWidget {
                       const Gap.h(24),
                       Text(
                         'I am a passionate and skilled Mobile Engineer with expertise in Flutter, dedicated to crafting seamless and user-centric digital experiences. Proficient in both Android and iOS frameworks, I thrive on transforming ideas into fully functional and visually stunning applications.',
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
+                            .headlineMedium
                             ?.copyWith(shadows: [
                           const Shadow(
                             color: Colors.black26,
