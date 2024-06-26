@@ -27,12 +27,12 @@ class AppCircleButton extends StatefulWidget {
 }
 
 class _AppCircleButtonState extends State<AppCircleButton> {
-  late final MaterialStatesController _controller;
+  late final WidgetStatesController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = MaterialStatesController();
+    _controller = WidgetStatesController();
   }
 
   @override
@@ -46,8 +46,8 @@ class _AppCircleButtonState extends State<AppCircleButton> {
     return ElevatedButton(
       statesController: _controller,
       style: ButtonStyle(
-        padding: MaterialStatePropertyAll(widget.padding),
-        shape: MaterialStatePropertyAll(
+        padding: WidgetStatePropertyAll(widget.padding),
+        shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
             side: BorderSide(
               width: 2,
@@ -57,8 +57,8 @@ class _AppCircleButtonState extends State<AppCircleButton> {
           ),
         ),
         backgroundColor:
-            MaterialStatePropertyAll(widget.bgColor ?? Colors.transparent),
-        overlayColor: MaterialStatePropertyAll(Color(widget.highlightColor)),
+            WidgetStatePropertyAll(widget.bgColor ?? Colors.transparent),
+        overlayColor: WidgetStatePropertyAll(Color(widget.highlightColor)),
       ),
       onPressed: widget.callback,
       child: ListenableBuilder(
@@ -68,8 +68,8 @@ class _AppCircleButtonState extends State<AppCircleButton> {
               widget.label,
               style: widget.labelStyle?.copyWith(
                 color: _controller.value.any((state) => [
-                          MaterialState.hovered,
-                          MaterialState.pressed
+                          WidgetState.hovered,
+                          WidgetState.pressed
                         ].any((element) => element == state))
                     ? const Color(AppColor.bgBlack)
                     : null,

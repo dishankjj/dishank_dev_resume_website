@@ -22,12 +22,12 @@ class AppTextButton extends StatefulWidget {
 }
 
 class _ButtonVariantState extends State<AppTextButton> {
-  late final MaterialStatesController _controller;
+  late final WidgetStatesController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = MaterialStatesController();
+    _controller = WidgetStatesController();
   }
 
   @override
@@ -41,8 +41,8 @@ class _ButtonVariantState extends State<AppTextButton> {
     return ElevatedButton(
       statesController: _controller,
       style: ButtonStyle(
-        fixedSize: MaterialStatePropertyAll(widget.size),
-        backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
+        fixedSize: WidgetStatePropertyAll(widget.size),
+        backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
       ),
       onPressed: widget.callback,
       child: ListenableBuilder(
@@ -51,9 +51,8 @@ class _ButtonVariantState extends State<AppTextButton> {
             return Text(
               widget.label,
               style: widget.labelStyle?.copyWith(
-                  color: _controller.value.any((state) => [
-                                MaterialState.pressed
-                              ].any((element) => element == state)) ||
+                  color: _controller.value.any((state) => [WidgetState.pressed]
+                              .any((element) => element == state)) ||
                           widget.isSelected
                       ? Color(widget.textHighlightColor)
                       : null),

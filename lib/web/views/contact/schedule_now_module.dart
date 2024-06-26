@@ -13,12 +13,12 @@ class WebScheduleNowModule extends StatefulWidget {
 }
 
 class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
-  late final MaterialStatesController buttonState;
+  late final WidgetStatesController buttonState;
 
   @override
   void initState() {
     super.initState();
-    buttonState = MaterialStatesController();
+    buttonState = WidgetStatesController();
   }
 
   @override
@@ -57,9 +57,9 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
                   return ElevatedButton(
                     statesController: buttonState,
                     style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(
+                      padding: const WidgetStatePropertyAll(
                           EdgeInsets.symmetric(horizontal: 36, vertical: 24)),
-                      shape: MaterialStatePropertyAll(
+                      shape: WidgetStatePropertyAll(
                         RoundedRectangleBorder(
                           side: const BorderSide(
                               width: 4, color: Color(AppColor.bgYellow)),
@@ -67,8 +67,8 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
                         ),
                       ),
                       backgroundColor:
-                          const MaterialStatePropertyAll(Colors.black),
-                      overlayColor: const MaterialStatePropertyAll(
+                          const WidgetStatePropertyAll(Colors.black),
+                      overlayColor: const WidgetStatePropertyAll(
                           Color(AppColor.bgYellow)),
                     ),
                     onPressed: () => launchUrlString(
@@ -79,8 +79,8 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
                       'Schedule Now',
                       style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           color: buttonState.value.any((state) => [
-                                    MaterialState.hovered,
-                                    MaterialState.pressed
+                                    WidgetState.hovered,
+                                    WidgetState.pressed
                                   ].any((element) => element == state))
                               ? const Color(AppColor.textBlack)
                               : null),
@@ -103,12 +103,12 @@ class MobileScheduleModule extends StatefulWidget {
 }
 
 class _MobileScheduleModuleState extends State<MobileScheduleModule> {
-  late final MaterialStatesController buttonState;
+  late final WidgetStatesController buttonState;
 
   @override
   void initState() {
     super.initState();
-    buttonState = MaterialStatesController();
+    buttonState = WidgetStatesController();
   }
 
   @override

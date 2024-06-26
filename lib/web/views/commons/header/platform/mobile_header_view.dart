@@ -26,12 +26,12 @@ class MobileHeaderView extends StatefulWidget {
 }
 
 class _MobileHeaderViewState extends State<MobileHeaderView> {
-  late final MaterialStatesController buttonState;
+  late final WidgetStatesController buttonState;
 
   @override
   void initState() {
     super.initState();
-    buttonState = MaterialStatesController();
+    buttonState = WidgetStatesController();
   }
 
   @override

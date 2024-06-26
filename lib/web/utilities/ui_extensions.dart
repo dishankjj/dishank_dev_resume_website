@@ -11,7 +11,7 @@ extension MediaScreenDimensionsUtility on BuildContext {
       <= 0.65 => mobile,
       > 0.65 && <= 1.25 => tablet,
       > 1.25 => web,
-      _ => throw UnimplementedError()
+      _ => web
     };
   }
 
@@ -21,9 +21,10 @@ extension MediaScreenDimensionsUtility on BuildContext {
       <= 0.65 => size.width / 480,
       > 0.65 && <= 1.25 => size.width / 720,
       > 1.25 => size.width / 1270,
-      _ => throw UnimplementedError()
+      _ => size.width / 1270,
     };
 
-    return MediaQuery.of(this).copyWith(textScaleFactor: textScaleFactor);
+    return MediaQuery.of(this)
+        .copyWith(textScaler: TextScaler.linear(textScaleFactor));
   }
 }
