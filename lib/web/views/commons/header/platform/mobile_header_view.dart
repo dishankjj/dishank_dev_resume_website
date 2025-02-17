@@ -1,28 +1,48 @@
+import 'dart:async';
+
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/buttons/circle_button.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/header/shared/mobile_menu_overlay.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/header/shared/drop_down_menu.dart';
+import 'package:dishank_dev_resume_website/web/views/commons/header/shared/mobile_menu_overlay.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MobileHeaderView extends StatefulWidget {
-  final PageController pageController;
-  final Map<String, VoidCallback> menuItems;
-  final OverlayPortalController menuButtonCtrl;
-
   const MobileHeaderView(
     this.pageController, {
     required this.menuItems,
     required this.menuButtonCtrl,
     super.key,
   });
+  final PageController pageController;
+  final Map<String, VoidCallback> menuItems;
+  final OverlayPortalController menuButtonCtrl;
 
   @override
   State<MobileHeaderView> createState() => _MobileHeaderViewState();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+        DiagnosticsProperty<PageController>('pageController', pageController),
+      )
+      ..add(
+        DiagnosticsProperty<Map<String, VoidCallback>>('menuItems', menuItems),
+      )
+      ..add(
+        DiagnosticsProperty<OverlayPortalController>(
+          'menuButtonCtrl',
+          menuButtonCtrl,
+        ),
+      );
+  }
 }
 
 class _MobileHeaderViewState extends State<MobileHeaderView> {
@@ -42,50 +62,59 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return OverlayPortal(
-        controller: widget.menuButtonCtrl,
-        overlayChildBuilder: (context) {
-          return MobileMenuOverlay(
-            child: DropDownMenuWidget(
-              widget.pageController,
-              headerMenuItems: widget.menuItems,
-              menuButtonCtrl: widget.menuButtonCtrl,
+      controller: widget.menuButtonCtrl,
+      overlayChildBuilder: (final BuildContext context) {
+        return MobileMenuOverlay(
+          child: DropDownMenuWidget(
+            widget.pageController,
+            headerMenuItems: widget.menuItems,
+            menuButtonCtrl: widget.menuButtonCtrl,
+          ),
+        );
+      },
+      child: Container(
+        height: 76,
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        child: Row(
+          children: <Widget>[
+            const Image(image: AssetImage(ImageAssets.logo)),
+            const Spacer(),
+            AppCircleButton(
+              label: AppText.linkedin,
+              labelStyle: Theme.of(context).textTheme.headlineSmall,
+              callback:
+                  () => unawaited(
+                    launchUrlString(
+                      AppUrl.linkedin,
+                      mode: LaunchMode.externalApplication,
+                    ),
+                  ),
+              highlightColor: AppColor.bgYellow,
+              borderColor: AppColor.bgYellow,
+              borderRadius: 24,
             ),
-          );
-        },
-        child: Container(
-          height: 76,
-          padding: const EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 8,
-          ),
-          child: Row(
-            children: [
-              const Image(image: AssetImage(ImageAssets.logo)),
-              const Spacer(),
-              AppCircleButton(
-                label: AppText.pingMe,
-                labelStyle: Theme.of(context).textTheme.headlineSmall,
-                callback: () => launchUrlString(
-                  AppUrl.linkedin,
-                  mode: LaunchMode.externalApplication,
-                ),
-                highlightColor: AppColor.bgYellow,
-                borderColor: AppColor.bgYellow,
-                borderRadius: 24,
+            const Gap(24),
+            InkWell(
+              key: UniqueKey(),
+              onTap: () => widget.menuButtonCtrl.toggle(),
+              child: Image(
+                key: AppGlobalKey.menuKey,
+                image: const AssetImage(ImageAssets.menu),
               ),
-              const Gap.w(24),
-              InkWell(
-                key: UniqueKey(),
-                onTap: () => widget.menuButtonCtrl.toggle(),
-                child: Image(
-                  key: AppGlobalKey.menuKey,
-                  image: const AssetImage(ImageAssets.menu),
-                ),
-              ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
+    );
   }
 }

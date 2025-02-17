@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PageDotModule extends StatefulWidget {
-  final PageController pageController;
-  final int totalPages;
-  final Axis axis;
-
   const PageDotModule.horizontal(
     this.pageController, {
     required this.totalPages,
@@ -20,8 +17,23 @@ class PageDotModule extends StatefulWidget {
     super.key,
   }) : axis = Axis.vertical;
 
+  final PageController pageController;
+  final int totalPages;
+  final Axis axis;
+
   @override
   State<PageDotModule> createState() => _PageDotModuleState();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+        DiagnosticsProperty<PageController>('pageController', pageController),
+      )
+      ..add(IntProperty('totalPages', totalPages))
+      ..add(EnumProperty<Axis>('axis', axis));
+  }
 }
 
 class _PageDotModuleState extends State<PageDotModule> {
@@ -32,9 +44,7 @@ class _PageDotModuleState extends State<PageDotModule> {
   void initState() {
     super.initState();
     offStage = true;
-    widget.pageController.addListener(() {
-      resetTimer();
-    });
+    widget.pageController.addListener(resetTimer);
   }
 
   void resetTimer() {
@@ -65,7 +75,7 @@ class _PageDotModuleState extends State<PageDotModule> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final double spacing = switch (widget.axis) {
       Axis.horizontal => 6,
       Axis.vertical => 4,
@@ -76,35 +86,47 @@ class _PageDotModuleState extends State<PageDotModule> {
       child: Wrap(
         spacing: spacing,
         direction: widget.axis,
-        children: List.generate(
+        children: List<Widget>.generate(
           widget.totalPages,
-          (index) => InkWell(
+          (final int index) => InkWell(
             onTap: () {
-              widget.pageController.animateToPage(index,
+              unawaited(
+                widget.pageController.animateToPage(
+                  index,
                   duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeOut);
+                  curve: Curves.easeOut,
+                ),
+              );
             },
             child: SizedBox.square(
               dimension: 12,
               child: ListenableBuilder(
-                  listenable: widget.pageController,
-                  builder: (context, _) {
-                    return Transform.scale(
-                      scale: (widget.pageController.page?.round() ?? 0) == index
-                          ? 1
-                          : 0.6,
-                      child: CircleAvatar(
-                        backgroundColor:
-                            (widget.pageController.page?.round() ?? 0) == index
-                                ? const Color(AppColor.bgOrange)
-                                : const Color(AppColor.bgWhite),
-                      ),
-                    );
-                  }),
+                listenable: widget.pageController,
+                builder: (final BuildContext context, _) {
+                  return Transform.scale(
+                    scale:
+                        (widget.pageController.page?.round() ?? 0) == index
+                            ? 1
+                            : 0.6,
+                    child: CircleAvatar(
+                      backgroundColor:
+                          (widget.pageController.page?.round() ?? 0) == index
+                              ? const Color(AppColor.bgOrange)
+                              : const Color(AppColor.bgWhite),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<bool>('offStage', offStage));
   }
 }

@@ -15,13 +15,12 @@ class ExpertiseView extends StatefulWidget {
 
 class _ExpertiseViewState extends State<ExpertiseView> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(final BuildContext context) {
+    return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(ImageAssets.background2),
           fit: BoxFit.cover,
-          alignment: Alignment.center,
         ),
         color: Color(AppColor.bgBlack),
       ),

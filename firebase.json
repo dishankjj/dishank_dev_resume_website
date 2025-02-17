@@ -1,6 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-  }
-}
+{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"]},"database":{"rules":"database.rules.json"},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"dishank-dev-65bb6","configurations":{"web":"1:610649365066:web:d02d0ce2e33dde7aaba4b3"}}}}}}

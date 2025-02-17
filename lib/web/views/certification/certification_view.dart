@@ -4,26 +4,19 @@ import 'package:dishank_dev_resume_website/web/utilities/ui_extensions.dart';
 import 'package:dishank_dev_resume_website/web/views/certification/platform/mobile_certification_view.dart';
 import 'package:dishank_dev_resume_website/web/views/certification/platform/web_certification_view.dart';
 import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CertificationView extends StatelessWidget {
+  const CertificationView({required this.rootPageController, super.key});
   final PageController rootPageController;
 
-  const CertificationView({
-    required this.rootPageController,
-    super.key,
-  });
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Container(
       alignment: Alignment.center,
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(ImageAssets.background4),
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-        ),
+        image: DecorationImage(image: AssetImage(ImageAssets.background4), fit: BoxFit.cover),
         color: Color(AppColor.bgBlack),
       ),
       child: context.layout(
@@ -32,5 +25,11 @@ class CertificationView extends StatelessWidget {
         web: WebCertificationView(controller: rootPageController),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<PageController>('rootPageController', rootPageController));
   }
 }

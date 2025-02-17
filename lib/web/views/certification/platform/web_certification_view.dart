@@ -1,49 +1,40 @@
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class WebCertificationView extends StatelessWidget {
+  const WebCertificationView({required this.controller, super.key});
   final PageController controller;
 
-  const WebCertificationView({
-    required this.controller,
-    super.key,
-  });
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         const HeaderFill(space: 32),
         const Gap(60),
         Align(
-          alignment: Alignment.center,
           child: Text(
-            AppText.certificationtext1,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  height: 0.5,
-                ),
+            AppText.certificationText1,
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(height: 0.5),
           ),
         ),
         const Gap(48),
         Expanded(
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: [
-              ...List.generate(
+            children: <Widget>[
+              ...List<Widget>.generate(
                 9,
-                (index) => GestureDetector(
-                  onTap: () {
-                    showGeneralDialog(
+                (final int index) => GestureDetector(
+                  onTap: () async {
+                    await showGeneralDialog(
                       context: context,
-                      pageBuilder: (context, a, b) {
+                      pageBuilder: (final BuildContext context, final Animation<double> a, final Animation<double> b) {
                         return ScaleTransition(
-                          scale: CurvedAnimation(
-                            parent: a,
-                            curve: Curves.easeIn,
-                          ),
+                          scale: CurvedAnimation(parent: a, curve: Curves.easeIn),
                           child: Material(
                             type: MaterialType.transparency,
                             child: GestureDetector(
@@ -53,7 +44,7 @@ class WebCertificationView extends StatelessWidget {
                                   child: Container(
                                     margin: const EdgeInsets.all(24),
                                     child: Image.network(
-                                      AppUrl.certificateUrl(index),
+                                      AppUrl.certificateUrl.replaceAll('{x}', '$index'),
                                       fit: BoxFit.fitWidth,
                                       alignment: Alignment.topLeft,
                                     ),
@@ -69,18 +60,14 @@ class WebCertificationView extends StatelessWidget {
                   child: Card(
                     margin: const EdgeInsets.symmetric(horizontal: 24),
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        width: 2,
-                        color: Color(AppColor.bgYellow),
-                      ),
+                      side: const BorderSide(width: 2, color: Color(AppColor.bgYellow)),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(24),
                       child: Image.network(
-                        AppUrl.certificateUrl(index),
+                        AppUrl.certificateUrl.replaceAll('{x}', '$index'),
                         fit: BoxFit.cover,
-                        alignment: Alignment.center,
                         filterQuality: FilterQuality.high,
                       ),
                     ),
@@ -94,5 +81,11 @@ class WebCertificationView extends StatelessWidget {
         const Gap(48 * 2),
       ],
     );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<PageController>('controller', controller));
   }
 }

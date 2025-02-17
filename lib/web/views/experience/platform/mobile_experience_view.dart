@@ -1,20 +1,23 @@
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/page_dot/page_dot_variant.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class MobileExperienceView extends StatefulWidget {
+  const MobileExperienceView({required this.data, super.key});
   final List<String> data;
-
-  const MobileExperienceView({
-    required this.data,
-    super.key,
-  });
 
   @override
   State<MobileExperienceView> createState() => _MobileExperienceViewState();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IterableProperty<String>('data', data));
+  }
 }
 
 class _MobileExperienceViewState extends State<MobileExperienceView> {
@@ -33,10 +36,10 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return Column(
-      children: [
+      children: <Widget>[
         const HeaderFill(),
         Align(
           alignment: Alignment.centerRight,
@@ -63,7 +66,7 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
         ),
         Expanded(
           child: Column(
-            children: [
+            children: <Widget>[
               Gap(size.width * 0.1),
               const Spacer(),
               Padding(
@@ -71,13 +74,12 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
+                  children: <Widget>[
                     Text(
                       AppText.experiencetext1,
-                      style:
-                          Theme.of(context).textTheme.displayMedium?.copyWith(
-                                height: 0.5,
-                              ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.displayMedium?.copyWith(height: 0.5),
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -107,7 +109,7 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
                 height: size.height * 0.6,
                 child: PageView.builder(
                   controller: _pageController,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (final BuildContext context, final int index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 36),
                       child: Card(
@@ -119,11 +121,17 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 24, bottom: 4)
-                              .add(const EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 16)),
+                          padding: const EdgeInsets.only(
+                            top: 24,
+                            bottom: 4,
+                          ).add(
+                            const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 16,
+                            ),
+                          ),
                           child: Column(
-                            children: [
+                            children: <Widget>[
                               const Icon(
                                 Icons.star,
                                 color: Color(AppColor.bgOrange),
@@ -135,14 +143,12 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
                                   child: Text(
                                     widget.data[index],
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineLarge
-                                        ?.copyWith(
-                                          height: 1.5,
-                                          color:
-                                              const Color(AppColor.textBlack),
-                                        ),
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.headlineLarge?.copyWith(
+                                      height: 1.5,
+                                      color: const Color(AppColor.textBlack),
+                                    ),
                                   ),
                                 ),
                               ),

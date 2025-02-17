@@ -3,21 +3,21 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 0.1.1+11
+version: 0.2.0+000200
 
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.7.0
 
 dependencies:
   flutter:
     sdk: flutter
 
+  flutter_animate_border:
+    path: /Users/dishankjindal/projects/personal/flutter/flutter_animate_border
+  gap:
   google_fonts:
   url_launcher:
-  firebase_core:
-  firebase_database:
   web:
-  # flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_lints:

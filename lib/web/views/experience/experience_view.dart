@@ -11,19 +11,18 @@ class ExperienceView extends StatelessWidget {
   const ExperienceView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const data = [
+  Widget build(final BuildContext context) {
+    const List<String> data = <String>[
       AppText.experiencedata1,
       AppText.experiencedata2,
       AppText.experiencedata3,
     ];
 
-    return Container(
+    return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(ImageAssets.background3),
           fit: BoxFit.cover,
-          alignment: Alignment.center,
         ),
         color: Color(AppColor.bgBlack),
       ),

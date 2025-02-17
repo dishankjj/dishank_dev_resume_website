@@ -1,40 +1,57 @@
+import 'dart:ui' as ui;
+
+import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/ui_extensions.dart';
+import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
+import 'package:dishank_dev_resume_website/web/views/view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
-import 'package:dishank_dev_resume_website/web/views/view.dart';
-import 'package:dishank_dev_resume_website/web/views/restrict/restrict_view.dart';
-
+/// used to track the state of the navigator globally
 final GlobalKey<NavigatorState> navState = GlobalKey();
 
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<ui.PointerDeviceKind> get dragDevices => <ui.PointerDeviceKind>{
+    ui.PointerDeviceKind.touch,
+    ui.PointerDeviceKind.mouse,
+  };
+}
+
+/// Main entry point of the website
 class WebApp extends StatelessWidget {
+  /// Constructor
   const WebApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return WidgetsApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Dishank Jindal | Mobile Software Engineer',
       color: Colors.teal,
       navigatorKey: navState,
       initialRoute: '/',
-      onGenerateRoute: (settings) {
+      onGenerateRoute: (final RouteSettings settings) {
         if (settings.name != null) {
           if (settings.name!.startsWith('/')) {
-            return MaterialPageRoute(
-              builder: (context) => const MainView(),
+            return MaterialPageRoute<MainView>(
+              builder: (final BuildContext context) => const MainView(),
             );
           }
         }
-        return MaterialPageRoute(
-          builder: (context) => const RestrictView(),
+        return MaterialPageRoute<RestrictView>(
+          builder: (final BuildContext context) => const RestrictView(),
         );
       },
-      builder: (context, child) {
-        ErrorWidget.builder = (errorDetails) => const RestrictView();
+      builder: (final BuildContext context, final Widget? child) {
+        ErrorWidget.builder =
+            (final FlutterErrorDetails errorDetails) => const RestrictView();
 
-        return Theme(
+        return ScrollConfiguration(
+          behavior: MyCustomScrollBehavior(),
+          child: Theme(
             data: ThemeData(
               textTheme: GoogleFonts.robotoTextTheme().copyWith(
                 displayLarge: const TextStyle(
@@ -136,7 +153,9 @@ class WebApp extends StatelessWidget {
                 tablet: const RestrictView(),
                 web: child,
               ),
-            ));
+            ),
+          ),
+        );
       },
     );
   }

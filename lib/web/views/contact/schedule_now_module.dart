@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/buttons/circle_button.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class WebScheduleNowModule extends StatefulWidget {
@@ -28,8 +31,8 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
 
     return Align(
       child: Container(
@@ -41,56 +44,80 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            const Gap.w(24),
+          children: <Widget>[
+            const Gap(24),
             Text(
-              AppText.contacttext1,
+              AppText.contactText1,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: const Color(AppColor.textBlack),
-                  ),
+                color: const Color(AppColor.textBlack),
+              ),
             ),
-            const Gap.w(60),
+            const Gap(60),
             ListenableBuilder(
-                listenable: buttonState,
-                builder: (context, _) {
-                  return ElevatedButton(
-                    statesController: buttonState,
-                    style: ButtonStyle(
-                      padding: const WidgetStatePropertyAll(
-                          EdgeInsets.symmetric(horizontal: 36, vertical: 24)),
-                      shape: WidgetStatePropertyAll(
-                        RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 4, color: Color(AppColor.bgYellow)),
-                          borderRadius: BorderRadius.circular(48),
+              listenable: buttonState,
+              builder: (final BuildContext context, _) {
+                return ElevatedButton(
+                  statesController: buttonState,
+                  style: ButtonStyle(
+                    padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
+                      EdgeInsets.symmetric(horizontal: 36, vertical: 24),
+                    ),
+                    shape: WidgetStatePropertyAll<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        side: const BorderSide(
+                          width: 4,
+                          color: Color(AppColor.bgYellow),
+                        ),
+                        borderRadius: BorderRadius.circular(48),
+                      ),
+                    ),
+                    backgroundColor: const WidgetStatePropertyAll<Color>(
+                      Colors.black,
+                    ),
+                    overlayColor: const WidgetStatePropertyAll<Color>(
+                      Color(AppColor.bgYellow),
+                    ),
+                  ),
+                  onPressed:
+                      () => unawaited(
+                        launchUrlString(
+                          'https://topmate.io/dishankjindal',
+                          mode: LaunchMode.externalApplication,
                         ),
                       ),
-                      backgroundColor:
-                          const WidgetStatePropertyAll(Colors.black),
-                      overlayColor: const WidgetStatePropertyAll(
-                          Color(AppColor.bgYellow)),
-                    ),
-                    onPressed: () => launchUrlString(
-                      'https://topmate.io/dishankjindal',
-                      mode: LaunchMode.externalApplication,
-                    ),
-                    child: Text(
-                      'Schedule Now',
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          color: buttonState.value.any((state) => [
-                                    WidgetState.hovered,
-                                    WidgetState.pressed
-                                  ].any((element) => element == state))
+                  child: Text(
+                    'Schedule Now',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      color:
+                          buttonState.value.any(
+                                (final WidgetState state) => <WidgetState>[
+                                  WidgetState.hovered,
+                                  WidgetState.pressed,
+                                ].any(
+                                  (final WidgetState element) =>
+                                      element == state,
+                                ),
+                              )
                               ? const Color(AppColor.textBlack)
-                              : null),
+                              : null,
                     ),
-                  );
-                }),
-            const Gap.w(24),
+                  ),
+                );
+              },
+            ),
+            const Gap(24),
           ],
         ),
       ),
+    );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
     );
   }
 }
@@ -118,8 +145,8 @@ class _MobileScheduleModuleState extends State<MobileScheduleModule> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
 
     return Align(
       child: Container(
@@ -132,36 +159,44 @@ class _MobileScheduleModuleState extends State<MobileScheduleModule> {
         margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            const Gap.h(24),
+          children: <Widget>[
+            const Gap(24),
             Text(
-              AppText.contacttext1,
+              AppText.contactText1,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    color: const Color(AppColor.bgBlack),
-                  ),
-            ),
-            const Gap.h(24),
-            AppCircleButton(
-              label: AppText.contacttext2,
-              labelStyle: Theme.of(context).textTheme.displaySmall,
-              callback: () => launchUrlString(
-                AppUrl.topmate,
-                mode: LaunchMode.externalApplication,
+                color: const Color(AppColor.bgBlack),
               ),
+            ),
+            const Gap(24),
+            AppCircleButton(
+              label: AppText.contactText2,
+              labelStyle: Theme.of(context).textTheme.displaySmall,
+              callback:
+                  () => unawaited(
+                    launchUrlString(
+                      AppUrl.topMate,
+                      mode: LaunchMode.externalApplication,
+                    ),
+                  ),
               bgColor: const Color(AppColor.bgBlack),
               highlightColor: AppColor.bgYellow,
               borderColor: AppColor.bgYellow,
               borderRadius: 48,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 36,
-                vertical: 24,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 24),
             ),
-            const Gap.h(24),
+            const Gap(24),
           ],
         ),
       ),
+    );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
     );
   }
 }

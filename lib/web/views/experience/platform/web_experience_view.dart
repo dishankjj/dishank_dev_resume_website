@@ -2,20 +2,23 @@ import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/extensions/padding.dart';
-import 'package:dishank_dev_resume_website/web/views/commons/gap/gap.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class WebExperienceView extends StatefulWidget {
+  const WebExperienceView({required this.data, super.key});
   final List<String> data;
-
-  const WebExperienceView({
-    required this.data,
-    super.key,
-  });
 
   @override
   State<WebExperienceView> createState() => _MobileExperienceViewState();
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IterableProperty<String>('data', data));
+  }
 }
 
 class _MobileExperienceViewState extends State<WebExperienceView> {
@@ -34,10 +37,10 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+  Widget build(final BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return Column(
-      children: [
+      children: <Widget>[
         const HeaderFill(),
         Align(
           alignment: Alignment.centerRight,
@@ -66,10 +69,10 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 36),
             child: Row(
-              children: [
+              children: <Widget>[
                 Expanded(
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Gap(size.height * 0.1),
                       const Spacer(),
                       Padding(
@@ -77,15 +80,12 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
+                          children: <Widget>[
                             Text(
                               AppText.experiencetext1,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displayMedium
-                                  ?.copyWith(
-                                    height: 0.5,
-                                  ),
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displayMedium?.copyWith(height: 0.5),
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
@@ -113,11 +113,11 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 36),
                         child: Column(
-                          children: [
-                            ...widget.data.map((e) {
-                              return BulletPointWidget(text: e).padding(
-                                const EdgeInsets.only(bottom: 36),
-                              );
+                          children: <Widget>[
+                            ...widget.data.map((final String e) {
+                              return BulletPointWidget(
+                                text: e,
+                              ).padding(const EdgeInsets.only(bottom: 36));
                             }),
                           ],
                         ),
@@ -133,7 +133,7 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
                     child: Image.asset(ImageAssets.experienceView1),
                   ),
                 ),
-                const Gap.w(24)
+                const Gap(24),
               ],
             ),
           ),
@@ -144,30 +144,25 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
 }
 
 class BulletPointWidget extends StatelessWidget {
+  const BulletPointWidget({required this.text, super.key});
   final String text;
 
-  const BulletPointWidget({
-    required this.text,
-    super.key,
-  });
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
-      children: [
-        const Icon(
-          Icons.star,
-          color: Color(AppColor.bgYellow),
-          size: 24,
-        ),
-        const Gap.w(24),
+      children: <Widget>[
+        const Icon(Icons.star, color: Color(AppColor.bgYellow), size: 24),
+        const Gap(24),
         Expanded(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        )
+          child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
+        ),
       ],
     );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(StringProperty('text', text));
   }
 }

@@ -1,16 +1,11 @@
-# dishank_dev_resume_website
+# Personal Website - dishank.dev
 
-A new Flutter project.
+## Built using
 
-## Getting Started
+- Flutter v3.29.0
+- Firebase for data driven UI
 
-This project is a starting point for a Flutter application.
+## Firebase Security
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+database.rules.json file contains security
+[Learn More](https://firebase.google.com/docs/database/security)

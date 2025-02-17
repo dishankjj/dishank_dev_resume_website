@@ -3,26 +3,23 @@ import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:flutter/material.dart';
 
 class MobileMenuOverlay extends StatelessWidget {
+  const MobileMenuOverlay({required this.child, super.key});
   final Widget child;
 
-  const MobileMenuOverlay({
-    required this.child,
-    super.key,
-  });
-
   @override
-  Widget build(BuildContext context) {
-    final query = MediaQuery.sizeOf(context);
-    final size = Size(query.width * 0.36, query.width * 0.6);
+  Widget build(final BuildContext context) {
+    final Size query = MediaQuery.sizeOf(context);
+    final Size size = Size(query.width * 0.36, query.width * 0.6);
 
-    final box = switch (AppGlobalKey.menuKey.currentContext) {
+    final RenderBox? box = switch (AppGlobalKey.menuKey.currentContext) {
       != null =>
         AppGlobalKey.menuKey.currentContext?.findRenderObject() as RenderBox?,
-      _ => null
+      _ => null,
     };
-    
+
     AppGlobalKey.menuKey.currentContext?.findRenderObject() as RenderBox?;
-    final pos = box?.localToGlobal(Offset(-size.width, 0)) ?? Offset.zero;
+    final Offset pos =
+        box?.localToGlobal(Offset(-size.width, 0)) ?? Offset.zero;
 
     return Positioned(
       top: pos.dy + ((box?.size.width ?? 1) / 2),
@@ -33,7 +30,6 @@ class MobileMenuOverlay extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(AppColor.menu),
           borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(0),
             topLeft: Radius.circular(24),
             bottomLeft: Radius.circular(24),
             bottomRight: Radius.circular(24),
