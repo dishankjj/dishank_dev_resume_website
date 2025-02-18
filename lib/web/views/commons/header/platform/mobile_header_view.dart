@@ -79,7 +79,7 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Row(
           children: <Widget>[
-            const Image(image: AssetImage(ImageAssets.logo)),
+            const Image(image: NetworkImage(ImageAssets.logo)),
             const Spacer(),
             AppCircleButton(
               label: AppText.linkedin,
@@ -101,7 +101,7 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
               onTap: () => widget.menuButtonCtrl.toggle(),
               child: Image(
                 key: AppGlobalKey.menuKey,
-                image: const AssetImage(ImageAssets.menu),
+                image: const NetworkImage(ImageAssets.menu),
               ),
             ),
           ],

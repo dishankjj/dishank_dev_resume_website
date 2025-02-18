@@ -21,7 +21,7 @@ class ContactView extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ImageAssets.background5),
+          image: NetworkImage(ImageAssets.background5),
           fit: BoxFit.cover,
         ),
         color: Color(AppColor.bgBlack),
@@ -100,7 +100,7 @@ class Footer extends StatelessWidget {
                   WidgetSpan(
                     child: SizedBox.square(
                       dimension: 12,
-                      child: Image.asset(ImageAssets.love),
+                      child: Image.network(ImageAssets.love),
                     ),
                   ),
                   const TextSpan(text: '  | Powered by '),

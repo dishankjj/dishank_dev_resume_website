@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ImageAssets.background1),
+          image: NetworkImage(ImageAssets.background1),
           fit: BoxFit.cover,
           alignment: Alignment.centerRight,
         ),

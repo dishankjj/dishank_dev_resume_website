@@ -1,7 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 extension MediaScreenDimensionsUtility on BuildContext {
-  T layout<T>({required final T mobile, required final T tablet, required final T web}) {
+  T layout<T>({
+    required final T mobile,
+    required final T tablet,
+    required final T web,
+  }) {
     final double aspectRatio = MediaQuery.sizeOf(this).aspectRatio;
     return switch (aspectRatio) {
       <= 0.65 => mobile,
@@ -20,6 +24,8 @@ extension MediaScreenDimensionsUtility on BuildContext {
       _ => size.width / 1270,
     };
 
-    return MediaQuery.of(this).copyWith(textScaler: TextScaler.linear(textScaleFactor));
+    return MediaQuery.of(
+      this,
+    ).copyWith(textScaler: TextScaler.linear(textScaleFactor));
   }
 }

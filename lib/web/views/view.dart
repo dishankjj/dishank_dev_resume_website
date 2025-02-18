@@ -31,7 +31,11 @@ class _MainViewState extends State<MainView> {
     _menuButtonCtrl = OverlayPortalController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(
-        rootPageController.animateToPage(0, duration: const Duration(milliseconds: 600), curve: Curves.decelerate),
+        rootPageController.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.decelerate,
+        ),
       );
       initializer();
     });
@@ -47,14 +51,26 @@ class _MainViewState extends State<MainView> {
     size = MediaQuery.sizeOf(context);
     children = <Widget>[
       SizedBox(width: size.width, height: size.height, child: const HomeView()),
-      SizedBox(width: size.width, height: size.height, child: const ExpertiseView()),
-      SizedBox(width: size.width, height: size.height, child: const ExperienceView()),
+      SizedBox(
+        width: size.width,
+        height: size.height,
+        child: const ExpertiseView(),
+      ),
+      SizedBox(
+        width: size.width,
+        height: size.height,
+        child: const ExperienceView(),
+      ),
       SizedBox(
         width: size.width,
         height: size.height,
         child: CertificationView(rootPageController: rootPageController),
       ),
-      SizedBox(width: size.width, height: size.height, child: const ContactView()),
+      SizedBox(
+        width: size.width,
+        height: size.height,
+        child: const ContactView(),
+      ),
     ];
   }
 
@@ -86,7 +102,10 @@ class _MainViewState extends State<MainView> {
             HeaderView(rootPageController, _menuButtonCtrl),
             Align(
               alignment: const Alignment(0.95, 0.95),
-              child: PageDotModule.vertical(rootPageController, totalPages: children.length),
+              child: PageDotModule.vertical(
+                rootPageController,
+                totalPages: children.length,
+              ),
             ),
           ],
         ),
@@ -99,6 +118,11 @@ class _MainViewState extends State<MainView> {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty<Size>('size', size))
-      ..add(DiagnosticsProperty<PageController>('rootPageController', rootPageController));
+      ..add(
+        DiagnosticsProperty<PageController>(
+          'rootPageController',
+          rootPageController,
+        ),
+      );
   }
 }

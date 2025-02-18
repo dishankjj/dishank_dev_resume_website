@@ -40,7 +40,7 @@ class WebHeaderView extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            const Image(image: AssetImage(ImageAssets.logo)),
+            const Image(image: NetworkImage(ImageAssets.logo)),
             const Spacer(),
             ListenableBuilder(
               listenable: pageController,

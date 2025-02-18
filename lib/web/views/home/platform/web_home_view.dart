@@ -34,22 +34,36 @@ class WebHomeView extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: SizedBox.square(
                       dimension: size.height * 0.45,
-                      child: FlutterAnimateBorder(
-                        controller:
-                            controller
-                              ..setGradient(
-                                const LinearGradient(
-                                  colors: <Color>[
-                                    Color(AppColor.bgOrange),
-                                    Color(AppColor.bgOrange),
-                                  ],
-                                ),
-                              )
-                              ..setCornerRadius(1000)
-                              ..setLineThickness(24)
-                              ..setLineWidth(100)
-                              ..setLinePadding(66),
-                        child: Image.asset(ImageAssets.dpWithYellowRing),
+
+                      ///! when swapping the below code between container and decoratedBox widget border radius is not working, but analyser is suggesting to change to decoratedBox which is a wrong suggestion or the decoratedBox Code is buggy
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 24,
+                            color: const Color(AppColor.bgYellow),
+                          ),
+                          borderRadius: BorderRadius.circular(500),
+                        ),
+                        child: FlutterAnimateBorder(
+                          controller:
+                              controller
+                                ..setGradient(
+                                  const SweepGradient(
+                                    colors: <Color>[
+                                      Colors.black,
+                                      Colors.blue,
+                                      Color(AppColor.bgYellow),
+                                      Colors.green,
+                                      Colors.red,
+                                    ],
+                                  ),
+                                )
+                                ..setCornerRadius(1000)
+                                ..setLineThickness(8)
+                                ..setLineWidth(100)
+                                ..setLinePadding(80),
+                          child: Image.network(ImageAssets.dp),
+                        ),
                       ),
                     ),
                   ),

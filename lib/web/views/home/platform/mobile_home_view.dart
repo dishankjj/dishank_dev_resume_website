@@ -37,26 +37,35 @@ class MobileHomeView extends StatelessWidget {
             children: <Widget>[
               Align(
                 alignment: Alignment.bottomLeft,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: circleStroke * 0.5),
-                  child: SizedBox.square(
-                    dimension: circleSize,
+                child: SizedBox.square(
+                  dimension: circleSize,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 12,
+                        color: const Color(AppColor.bgYellow),
+                      ),
+                      borderRadius: BorderRadius.circular(500),
+                    ),
                     child: FlutterAnimateBorder(
                       controller:
                           controller
                             ..setGradient(
-                              const LinearGradient(
+                              const SweepGradient(
                                 colors: <Color>[
-                                  Color(AppColor.bgOrange),
-                                  Color(AppColor.bgOrange),
+                                  Colors.black,
+                                  Colors.blue,
+                                  Color(AppColor.bgYellow),
+                                  Colors.green,
+                                  Colors.red,
                                 ],
                               ),
                             )
                             ..setCornerRadius(1000)
-                            ..setLineThickness(16)
-                            ..setLineWidth(100)
-                            ..setLinePadding(44),
-                      child: Image.asset(ImageAssets.dpWithYellowRing),
+                            ..setLineThickness(4)
+                            ..setLineWidth(80)
+                            ..setLinePadding(40),
+                      child: Image.network(ImageAssets.dp),
                     ),
                   ),
                 ),

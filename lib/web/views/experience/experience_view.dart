@@ -21,7 +21,7 @@ class ExperienceView extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ImageAssets.background3),
+          image: NetworkImage(ImageAssets.background3),
           fit: BoxFit.cover,
         ),
         color: Color(AppColor.bgBlack),

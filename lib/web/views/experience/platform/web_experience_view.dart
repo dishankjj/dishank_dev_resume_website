@@ -130,7 +130,7 @@ class _MobileExperienceViewState extends State<WebExperienceView> {
                 Align(
                   child: SizedBox.square(
                     dimension: 360,
-                    child: Image.asset(ImageAssets.experienceView1),
+                    child: Image.network(ImageAssets.experienceView1),
                   ),
                 ),
                 const Gap(24),

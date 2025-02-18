@@ -18,7 +18,9 @@ class WebCertificationView extends StatelessWidget {
         Align(
           child: Text(
             AppText.certificationText1,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(height: 0.5),
+            style: Theme.of(
+              context,
+            ).textTheme.displayMedium?.copyWith(height: 0.5),
           ),
         ),
         const Gap(48),
@@ -32,9 +34,16 @@ class WebCertificationView extends StatelessWidget {
                   onTap: () async {
                     await showGeneralDialog(
                       context: context,
-                      pageBuilder: (final BuildContext context, final Animation<double> a, final Animation<double> b) {
+                      pageBuilder: (
+                        final BuildContext context,
+                        final Animation<double> a,
+                        final Animation<double> b,
+                      ) {
                         return ScaleTransition(
-                          scale: CurvedAnimation(parent: a, curve: Curves.easeIn),
+                          scale: CurvedAnimation(
+                            parent: a,
+                            curve: Curves.easeIn,
+                          ),
                           child: Material(
                             type: MaterialType.transparency,
                             child: GestureDetector(
@@ -44,7 +53,10 @@ class WebCertificationView extends StatelessWidget {
                                   child: Container(
                                     margin: const EdgeInsets.all(24),
                                     child: Image.network(
-                                      AppUrl.certificateUrl.replaceAll('{x}', '$index'),
+                                      AppUrl.certificateUrl.replaceAll(
+                                        '{x}',
+                                        '$index',
+                                      ),
                                       fit: BoxFit.fitWidth,
                                       alignment: Alignment.topLeft,
                                     ),
@@ -60,7 +72,10 @@ class WebCertificationView extends StatelessWidget {
                   child: Card(
                     margin: const EdgeInsets.symmetric(horizontal: 24),
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 2, color: Color(AppColor.bgYellow)),
+                      side: const BorderSide(
+                        width: 2,
+                        color: Color(AppColor.bgYellow),
+                      ),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Padding(
@@ -86,6 +101,8 @@ class WebCertificationView extends StatelessWidget {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<PageController>('controller', controller));
+    properties.add(
+      DiagnosticsProperty<PageController>('controller', controller),
+    );
   }
 }

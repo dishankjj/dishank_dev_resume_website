@@ -49,7 +49,7 @@ class BeInTouchModule extends StatelessWidget {
                     ),
                   ),
               child: const Image(
-                image: AssetImage(ImageAssets.github),
+                image: NetworkImage(ImageAssets.github),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),
@@ -62,7 +62,7 @@ class BeInTouchModule extends StatelessWidget {
                     ),
                   ),
               child: const Image(
-                image: AssetImage(ImageAssets.gmail),
+                image: NetworkImage(ImageAssets.gmail),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),
@@ -75,7 +75,7 @@ class BeInTouchModule extends StatelessWidget {
                     ),
                   ),
               child: const Image(
-                image: AssetImage(ImageAssets.x),
+                image: NetworkImage(ImageAssets.x),
                 fit: BoxFit.contain,
               ).size(iconSize),
             ),

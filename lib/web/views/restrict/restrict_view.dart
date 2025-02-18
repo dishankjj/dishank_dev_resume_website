@@ -21,7 +21,7 @@ class RestrictView extends StatelessWidget {
             withBg
                 ? const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(ImageAssets.background1),
+                    image: NetworkImage(ImageAssets.background1),
                     alignment: Alignment.topLeft,
                     fit: BoxFit.cover,
                   ),
@@ -34,7 +34,7 @@ class RestrictView extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Image(image: AssetImage(ImageAssets.logo)),
+                const Image(image: NetworkImage(ImageAssets.logo)),
                 const Gap(24),
                 Text(
                   'Please view after some time!\ncoming soon.',

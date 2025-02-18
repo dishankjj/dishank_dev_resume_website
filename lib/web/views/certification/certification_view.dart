@@ -16,7 +16,10 @@ class CertificationView extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage(ImageAssets.background4), fit: BoxFit.cover),
+        image: DecorationImage(
+          image: NetworkImage(ImageAssets.background4),
+          fit: BoxFit.cover,
+        ),
         color: Color(AppColor.bgBlack),
       ),
       child: context.layout(
@@ -30,6 +33,11 @@ class CertificationView extends StatelessWidget {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<PageController>('rootPageController', rootPageController));
+    properties.add(
+      DiagnosticsProperty<PageController>(
+        'rootPageController',
+        rootPageController,
+      ),
+    );
   }
 }

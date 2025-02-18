@@ -19,7 +19,7 @@ class _ExpertiseViewState extends State<ExpertiseView> {
     return DecoratedBox(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ImageAssets.background2),
+          image: NetworkImage(ImageAssets.background2),
           fit: BoxFit.cover,
         ),
         color: Color(AppColor.bgBlack),
