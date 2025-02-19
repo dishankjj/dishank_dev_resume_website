@@ -1,4 +1,5 @@
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
+import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/enums.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/views/home/hollow_container_painter.dart';
@@ -78,7 +79,7 @@ class WebHomeView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          'Hi there :)',
+                          AppText.homeText1,
                           style: Theme.of(
                             context,
                           ).textTheme.displayMedium?.copyWith(
@@ -92,7 +93,7 @@ class WebHomeView extends StatelessWidget {
                         ),
                         const Gap(16),
                         Text(
-                          "I'm Dishank Jindal",
+                          AppText.homeText2,
                           style: Theme.of(
                             context,
                           ).textTheme.displayLarge?.copyWith(
@@ -106,7 +107,7 @@ class WebHomeView extends StatelessWidget {
                         ),
                         const Gap(24),
                         Text(
-                          'Mobile Software Engineer\nBring your ideas to life with me',
+                          AppText.homeText3,
                           style: Theme.of(
                             context,
                           ).textTheme.displaySmall?.copyWith(
@@ -120,7 +121,7 @@ class WebHomeView extends StatelessWidget {
                         ),
                         const Gap(24),
                         Text(
-                          'I am a passionate and skilled Mobile Engineer with expertise in Flutter, dedicated to crafting seamless and user-centric digital experiences. Proficient in both Android and iOS frameworks, I thrive on transforming ideas into fully functional and visually stunning applications.',
+                          AppText.homeText4,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(

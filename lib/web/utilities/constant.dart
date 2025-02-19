@@ -45,14 +45,21 @@ class AppText {
       "Interested in working together?\nLet's plan a conversation";
   static const String contactText2 = 'Schedule Now';
   static const String contactText3 = 'Be in touch with';
+  static const String scheduleNow = 'Schedule Now';
+  static const String designedBy = 'Designed by ';
+  static const String babitaSharma = 'Babita Sharma';
+  static const String madeWith = 'Made with ';
+  static const String poweredBy = '  | Powered by ';
 }
 
 class AppUrl {
   static const String email = 'mailto:reach@dishank.dev';
   static const String linkedin = 'https://www.linkedin.com/in/dishankjindal';
-  static const String topMate = 'https://topmate.io/dishankjindal';
+  static const String calendly = 'https://calendly.com/dishankjindal/30min';
   static const String x = 'https://www.x.com/dishankjindal';
   static const String github = 'https://www.github.com/dishankjindal1';
+  static const String behance = 'https://www.behance.net/babitasharma5';
+  static const String flutter = 'https://flutter.dev';
 
   /// CERTIFICATE
   static const String certificateUrl =

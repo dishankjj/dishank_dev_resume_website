@@ -5,6 +5,7 @@ import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/views/commons/buttons/circle_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_border/flutter_animate_border.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -17,6 +18,9 @@ class WebScheduleNowModule extends StatefulWidget {
 
 class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
   late final WidgetStatesController buttonState;
+
+  final FlutterAnimateBorderController controller =
+      FlutterAnimateBorderController();
 
   @override
   void initState() {
@@ -57,50 +61,70 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
             ListenableBuilder(
               listenable: buttonState,
               builder: (final BuildContext context, _) {
-                return ElevatedButton(
-                  statesController: buttonState,
-                  style: ButtonStyle(
-                    padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
-                      EdgeInsets.symmetric(horizontal: 36, vertical: 24),
-                    ),
-                    shape: WidgetStatePropertyAll<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        side: const BorderSide(
-                          width: 4,
-                          color: Color(AppColor.bgYellow),
+                return IntrinsicHeight(
+                  child: FlutterAnimateBorder(
+                    controller:
+                        controller
+                          ..setGradient(
+                            const LinearGradient(
+                              colors: <Color>[
+                                Color(AppColor.bgOrange),
+                                Color(AppColor.bgOrange),
+                              ],
+                            ),
+                          )
+                          ..setCornerRadius(48)
+                          ..setLineThickness(8)
+                          ..setLineWidth(24)
+                          ..setLinePadding(-20),
+                    child: ElevatedButton(
+                      statesController: buttonState,
+                      style: ButtonStyle(
+                        padding: const WidgetStatePropertyAll<
+                          EdgeInsetsGeometry
+                        >(EdgeInsets.symmetric(horizontal: 36, vertical: 24)),
+                        shape: WidgetStatePropertyAll<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                            side: const BorderSide(
+                              width: 4,
+                              color: Color(AppColor.bgYellow),
+                            ),
+                            borderRadius: BorderRadius.circular(48),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(48),
-                      ),
-                    ),
-                    backgroundColor: const WidgetStatePropertyAll<Color>(
-                      Colors.black,
-                    ),
-                    overlayColor: const WidgetStatePropertyAll<Color>(
-                      Color(AppColor.bgYellow),
-                    ),
-                  ),
-                  onPressed:
-                      () => unawaited(
-                        launchUrlString(
-                          'https://topmate.io/dishankjindal',
-                          mode: LaunchMode.externalApplication,
+                        backgroundColor: const WidgetStatePropertyAll<Color>(
+                          Colors.black,
+                        ),
+                        overlayColor: const WidgetStatePropertyAll<Color>(
+                          Color(AppColor.bgYellow),
                         ),
                       ),
-                  child: Text(
-                    'Schedule Now',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color:
-                          buttonState.value.any(
-                                (final WidgetState state) => <WidgetState>[
-                                  WidgetState.hovered,
-                                  WidgetState.pressed,
-                                ].any(
-                                  (final WidgetState element) =>
-                                      element == state,
-                                ),
-                              )
-                              ? const Color(AppColor.textBlack)
-                              : null,
+                      onPressed:
+                          () => unawaited(
+                            launchUrlString(
+                              AppUrl.calendly,
+                              mode: LaunchMode.externalApplication,
+                            ),
+                          ),
+                      child: Text(
+                        AppText.scheduleNow,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.displaySmall?.copyWith(
+                          color:
+                              buttonState.value.any(
+                                    (final WidgetState state) => <WidgetState>[
+                                      WidgetState.hovered,
+                                      WidgetState.pressed,
+                                    ].any(
+                                      (final WidgetState element) =>
+                                          element == state,
+                                    ),
+                                  )
+                                  ? const Color(AppColor.textBlack)
+                                  : null,
+                        ),
+                      ),
                     ),
                   ),
                 );
@@ -116,9 +140,16 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-      DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
-    );
+    properties
+      ..add(
+        DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
+      )
+      ..add(
+        DiagnosticsProperty<FlutterAnimateBorderController>(
+          'controller',
+          controller,
+        ),
+      );
   }
 }
 
@@ -175,7 +206,7 @@ class _MobileScheduleModuleState extends State<MobileScheduleModule> {
               callback:
                   () => unawaited(
                     launchUrlString(
-                      AppUrl.topMate,
+                      AppUrl.calendly,
                       mode: LaunchMode.externalApplication,
                     ),
                   ),
