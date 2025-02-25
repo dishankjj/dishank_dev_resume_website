@@ -23,8 +23,8 @@ class AppText {
   static const String expertiseText2r = 'CI CD\nPipeline';
   static const String expertiseText3l = 'In-App\nPurchase';
   static const String expertiseText3r = 'Localization\ni18n';
-  static const String expertiseText4l = 'AWS GCP\nAZURE';
-  static const String expertiseText4r = 'WatchOS\nFlutter Web';
+  static const String expertiseText4l = 'Bluetooth\nGoogle Maps';
+  static const String expertiseText4r = 'OWASP-MAS\nBurp-Suite';
   static const String expertiseText5l = 'iOS Android\nPublishing';
   static const String expertiseText5r = 'White Black\nBox Testing';
 

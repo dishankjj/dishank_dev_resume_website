@@ -8,20 +8,9 @@ import 'package:flutter_animate_border/flutter_animate_border.dart';
 import 'package:gap/gap.dart';
 
 class MobileExpertiseView extends StatelessWidget {
-  const MobileExpertiseView({super.key});
+  const MobileExpertiseView(this.expertiseList, {super.key});
 
-  List<String> get expertiseList => <String>[
-    AppText.expertiseText1l,
-    AppText.expertiseText1r,
-    AppText.expertiseText2l,
-    AppText.expertiseText2r,
-    AppText.expertiseText3l,
-    AppText.expertiseText3r,
-    AppText.expertiseText4l,
-    AppText.expertiseText4r,
-    AppText.expertiseText5l,
-    AppText.expertiseText5r,
-  ];
+  final List<String> expertiseList;
 
   @override
   Widget build(final BuildContext context) {
