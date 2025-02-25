@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dishank_dev_resume_website/web/core/text_animating_widget.dart';
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/enums.dart';
@@ -78,126 +79,128 @@ class _MobileHomeViewState extends State<MobileHomeView>
             );
           },
           child: Stack(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: SizedBox.square(
-                  dimension: circleSize,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 12,
-                        color: const Color(AppColor.bgYellow),
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: SizedBox.square(
+                      dimension: circleSize,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 12,
+                            color: const Color(AppColor.bgYellow),
+                          ),
+                          borderRadius: BorderRadius.circular(500),
+                        ),
+                        child: FlutterAnimateBorder(
+                          controller:
+                              controller
+                                ..setGradient(
+                                  const SweepGradient(
+                                    colors: <Color>[
+                                      Colors.black,
+                                      Colors.blue,
+                                      Color(AppColor.bgYellow),
+                                      Colors.green,
+                                      Colors.red,
+                                    ],
+                                  ),
+                                )
+                                ..setCornerRadius(1000)
+                                ..setLineThickness(4)
+                                ..setLineWidth(80)
+                                ..setLinePadding(40),
+                          child: Image.network(ImageAssets.dp),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(500),
-                    ),
-                    child: FlutterAnimateBorder(
-                      controller:
-                          controller
-                            ..setGradient(
-                              const SweepGradient(
-                                colors: <Color>[
-                                  Colors.black,
-                                  Colors.blue,
-                                  Color(AppColor.bgYellow),
-                                  Colors.green,
-                                  Colors.red,
-                                ],
-                              ),
-                            )
-                            ..setCornerRadius(1000)
-                            ..setLineThickness(4)
-                            ..setLineWidth(80)
-                            ..setLinePadding(40),
-                      child: Image.network(ImageAssets.dp),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(
-                  circleStroke * 2,
-                ).add(const EdgeInsets.only(left: 8, top: 4)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:
-                      <Widget>[
-                        const Spacer(),
-                        Text(
-                          AppText.homeText1,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.headlineLarge?.copyWith(
-                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                          ),
-                        ),
-                        const Gap(24),
-                        Text(
-                          AppText.homeText2,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.displayMedium?.copyWith(
-                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                          ),
-                        ),
-                        const Gap(24),
-                        Text(
-                          AppText.homeText3,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.headlineLarge?.copyWith(
-                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                          ),
-                        ),
-                        const Gap(24),
-                        Text(
-                          AppText.homeText4,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleLarge?.copyWith(
-                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                          ),
-                        ),
-                        const Spacer(),
-                        Gap(circleSize),
-                      ].map((final Widget e) {
-                        if (e is Text) {
-                          const int timerDuration = 800;
-                          innerIndex += 1;
-                          return e
-                              .animate(
-                                delay: Duration(
-                                  milliseconds: timerDuration * innerIndex,
-                                ),
-                              )
-                              .fade(
-                                begin: 0,
-                                end: 1,
-                                duration: const Duration(
-                                  milliseconds: timerDuration ~/ 2,
-                                ),
-                                curve: Curves.decelerate,
-                              )
-                              .slideX(
-                                begin: -0.2,
-                                duration: const Duration(
-                                  milliseconds: timerDuration,
-                                ),
-                                curve: Curves.decelerate,
-                              );
-                        }
+                  Padding(
+                    padding: EdgeInsets.all(
+                      circleStroke * 2,
+                    ).add(const EdgeInsets.only(left: 8, top: 4)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:
+                          <Widget>[
+                            const Spacer(),
+                            Text(
+                              AppText.homeText1,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.headlineLarge?.copyWith(
+                                shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                              ),
+                            ),
+                            const Gap(24),
+                            TextAnimatingWidget(
+                              AppText.homeText2,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displayMedium?.copyWith(
+                                shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                              ),
+                            ),
 
-                        return e;
-                      }).toList(),
-                ),
+                            const Gap(24),
+                            Text(
+                              AppText.homeText3,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.headlineLarge?.copyWith(
+                                shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                              ),
+                            ),
+                            const Gap(24),
+                            Text(
+                              AppText.homeText4,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleLarge?.copyWith(
+                                shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                              ),
+                            ),
+                            const Spacer(),
+                            Gap(circleSize),
+                          ].map((final Widget e) {
+                            if (e is Text || e is TextAnimatingWidget) {
+                              const int timerDuration = 800;
+                              innerIndex += 1;
+                              return e
+                                  .animate(
+                                    delay: Duration(
+                                      milliseconds: timerDuration * innerIndex,
+                                    ),
+                                  )
+                                  .fade(
+                                    begin: 0,
+                                    end: 1,
+                                    duration: const Duration(
+                                      milliseconds: timerDuration ~/ 2,
+                                    ),
+                                    curve: Curves.decelerate,
+                                  )
+                                  .slideX(
+                                    begin: -0.2,
+                                    duration: const Duration(
+                                      milliseconds: timerDuration,
+                                    ),
+                                    curve: Curves.decelerate,
+                                  );
+                            }
+
+                            return e;
+                          }).toList(),
+                    ),
+                  ),
+                ],
+              )
+              .animate(delay: const Duration(seconds: 2))
+              .fade(
+                duration: const Duration(milliseconds: 1000),
+                begin: AppGlobalKey.initialBoot ? 1 : 0,
+                end: 1,
               ),
-            ],
-          ).animate().fade(
-            delay: const Duration(milliseconds: 2400),
-            duration: const Duration(milliseconds: 1000),
-            begin: AppGlobalKey.initialBoot ? 1 : 0,
-            end: 1,
-          ),
         ),
       ),
     );
