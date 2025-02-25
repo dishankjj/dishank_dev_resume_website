@@ -81,6 +81,7 @@ class _MobileExperienceViewState extends State<MobileExperienceView> {
                         context,
                       ).textTheme.displayMedium?.copyWith(height: 0.5),
                     ),
+                    const Gap(8),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(

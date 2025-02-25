@@ -55,6 +55,8 @@ class _MobileHomeViewState extends State<MobileHomeView>
     final double circleStroke = size.width * 0.03;
     final double innerCardHeight = size.height * 0.84;
 
+    int innerIndex = 0;
+
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -118,44 +120,73 @@ class _MobileHomeViewState extends State<MobileHomeView>
                 ).add(const EdgeInsets.only(left: 8, top: 4)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Spacer(),
-                    Text(
-                      AppText.homeText1,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.headlineLarge?.copyWith(
-                        shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                      ),
-                    ),
-                    const Gap(24),
-                    Text(
-                      AppText.homeText2,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.displayMedium?.copyWith(
-                        shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                      ),
-                    ),
-                    const Gap(24),
-                    Text(
-                      AppText.homeText3,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.headlineLarge?.copyWith(
-                        shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                      ),
-                    ),
-                    const Gap(24),
-                    Text(
-                      AppText.homeText4,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        shadows: <Shadow>[const Shadow(blurRadius: 16)],
-                      ),
-                    ),
-                    const Spacer(),
-                    Gap(circleSize),
-                  ],
+                  children:
+                      <Widget>[
+                        const Spacer(),
+                        Text(
+                          AppText.homeText1,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.headlineLarge?.copyWith(
+                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                          ),
+                        ),
+                        const Gap(24),
+                        Text(
+                          AppText.homeText2,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.displayMedium?.copyWith(
+                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                          ),
+                        ),
+                        const Gap(24),
+                        Text(
+                          AppText.homeText3,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.headlineLarge?.copyWith(
+                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                          ),
+                        ),
+                        const Gap(24),
+                        Text(
+                          AppText.homeText4,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleLarge?.copyWith(
+                            shadows: <Shadow>[const Shadow(blurRadius: 16)],
+                          ),
+                        ),
+                        const Spacer(),
+                        Gap(circleSize),
+                      ].map((final Widget e) {
+                        if (e is Text) {
+                          const int timerDuration = 1000;
+                          innerIndex += 1;
+                          return e
+                              .animate(
+                                delay: Duration(
+                                  milliseconds: timerDuration * innerIndex,
+                                ),
+                              )
+                              .fade(
+                                begin: 0,
+                                end: 1,
+                                duration: const Duration(
+                                  milliseconds: timerDuration ~/ 4,
+                                ),
+                              )
+                              .slideX(
+                                begin: -0.2,
+                                duration: const Duration(
+                                  milliseconds: timerDuration ~/ 2,
+                                ),
+                              );
+                        }
+
+                        return e;
+                      }).toList(),
                 ),
               ),
             ],

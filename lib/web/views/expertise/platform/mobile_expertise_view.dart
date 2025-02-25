@@ -33,6 +33,7 @@ class MobileExpertiseView extends StatelessWidget {
                   ).textTheme.displayMedium?.copyWith(height: 0.5),
                 ),
               ),
+              const Gap(8),
               Align(
                 alignment: Alignment.centerRight,
                 child: Container(

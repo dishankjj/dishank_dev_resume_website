@@ -49,6 +49,8 @@ class _WebHomeViewState extends State<WebHomeView>
   Widget build(final BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
+    int innerIndex = 0;
+
     return Stack(
       children: <Widget>[
         Align(
@@ -119,65 +121,92 @@ class _WebHomeViewState extends State<WebHomeView>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          AppText.homeText1,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.displayMedium?.copyWith(
-                            shadows: <Shadow>[
-                              const Shadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
+                      children:
+                          <Widget>[
+                            Text(
+                              AppText.homeText1,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displayMedium?.copyWith(
+                                shadows: <Shadow>[
+                                  const Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        const Gap(16),
-                        Text(
-                          AppText.homeText2,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.displayLarge?.copyWith(
-                            shadows: <Shadow>[
-                              const Shadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
+                            ),
+                            const Gap(16),
+                            Text(
+                              AppText.homeText2,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displayLarge?.copyWith(
+                                shadows: <Shadow>[
+                                  const Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        const Gap(24),
-                        Text(
-                          AppText.homeText3,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.displaySmall?.copyWith(
-                            shadows: <Shadow>[
-                              const Shadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
+                            ),
+                            const Gap(24),
+                            Text(
+                              AppText.homeText3,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displaySmall?.copyWith(
+                                shadows: <Shadow>[
+                                  const Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                        const Gap(24),
-                        Text(
-                          AppText.homeText4,
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.headlineMedium?.copyWith(
-                            shadows: <Shadow>[
-                              const Shadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
+                            ),
+                            const Gap(24),
+                            Text(
+                              AppText.homeText4,
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.headlineMedium?.copyWith(
+                                shadows: <Shadow>[
+                                  const Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 4,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
+                            ),
+                          ].map((final Widget e) {
+                            if (e is Text) {
+                              const int timerDuration = 1000;
+                              innerIndex += 1;
+                              return e
+                                  .animate(
+                                    delay: Duration(
+                                      milliseconds: timerDuration * innerIndex,
+                                    ),
+                                  )
+                                  .fade(
+                                    begin: 0,
+                                    end: 1,
+                                    duration: const Duration(
+                                      milliseconds: timerDuration ~/ 4,
+                                    ),
+                                  )
+                                  .slideX(
+                                    begin: -0.2,
+                                    duration: const Duration(
+                                      milliseconds: timerDuration ~/ 2,
+                                    ),
+                                  );
+                            }
+
+                            return e;
+                          }).toList(),
                     ),
                   ),
                 ],
