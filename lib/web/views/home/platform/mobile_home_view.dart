@@ -1,14 +1,49 @@
+import 'dart:async';
+
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/enums.dart';
+import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/views/home/hollow_container_painter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animate_border/flutter_animate_border.dart';
 import 'package:gap/gap.dart';
 
-class MobileHomeView extends StatelessWidget {
+class MobileHomeView extends StatefulWidget {
   const MobileHomeView({super.key});
+
+  @override
+  State<MobileHomeView> createState() => _MobileHomeViewState();
+}
+
+class _MobileHomeViewState extends State<MobileHomeView>
+    with SingleTickerProviderStateMixin {
+  final FlutterAnimateBorderController controller =
+      FlutterAnimateBorderController();
+
+  late final AnimationController _animationController;
+  late final Animation<double> _animateValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _animateValue = CurveTween(
+      curve: Curves.decelerate,
+    ).animate(_animationController);
+    unawaited(
+      Future<void>.delayed(const Duration(seconds: 1)).then((_) {
+        _animationController.forward();
+      }),
+    );
+  }
 
   @override
   Widget build(final BuildContext context) {
@@ -26,13 +61,20 @@ class MobileHomeView extends StatelessWidget {
         width: size.width * 0.85,
         height: innerCardHeight,
         margin: const EdgeInsets.only(top: 100),
-        child: CustomPaint(
-          painter: HollowContainer(
-            layout: Layout.mobile,
-            circleSize: circleSize,
-            stroke: circleStroke,
-            circular: 40,
-          ),
+        child: ListenableBuilder(
+          listenable: _animateValue,
+          builder: (final BuildContext context, final Widget? child) {
+            return CustomPaint(
+              painter: HollowContainer(
+                layout: Layout.mobile,
+                circleSize: circleSize,
+                stroke: circleStroke,
+                circular: 40,
+                animate: AppGlobalKey.initialBoot ? 1 : _animateValue.value,
+              ),
+              child: child,
+            );
+          },
           child: Stack(
             children: <Widget>[
               Align(
@@ -117,8 +159,24 @@ class MobileHomeView extends StatelessWidget {
                 ),
               ),
             ],
+          ).animate().fade(
+            delay: const Duration(milliseconds: 2400),
+            duration: const Duration(milliseconds: 1000),
+            begin: AppGlobalKey.initialBoot ? 1 : 0,
+            end: 1,
           ),
         ),
+      ),
+    );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<FlutterAnimateBorderController>(
+        'controller',
+        controller,
       ),
     );
   }

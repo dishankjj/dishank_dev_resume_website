@@ -1,31 +1,73 @@
+import 'dart:async';
+
 import 'package:dishank_dev_resume_website/web/utilities/color_assets.dart';
 import 'package:dishank_dev_resume_website/web/utilities/constant.dart';
 import 'package:dishank_dev_resume_website/web/utilities/enums.dart';
+import 'package:dishank_dev_resume_website/web/utilities/global_keys.dart';
 import 'package:dishank_dev_resume_website/web/utilities/image_assets.dart';
 import 'package:dishank_dev_resume_website/web/views/home/hollow_container_painter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animate_border/flutter_animate_border.dart';
 import 'package:gap/gap.dart';
 
-class WebHomeView extends StatelessWidget {
+class WebHomeView extends StatefulWidget {
   const WebHomeView({super.key});
+
+  @override
+  State<WebHomeView> createState() => _WebHomeViewState();
+}
+
+class _WebHomeViewState extends State<WebHomeView>
+    with SingleTickerProviderStateMixin {
+  final FlutterAnimateBorderController controller =
+      FlutterAnimateBorderController();
+
+  late final AnimationController _animationController;
+  late final Animation<double> _animateValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _animateValue = CurveTween(
+      curve: Curves.decelerate,
+    ).animate(_animationController);
+    unawaited(
+      Future<void>.delayed(const Duration(seconds: 1)).then((_) {
+        _animationController.forward();
+      }),
+    );
+  }
 
   @override
   Widget build(final BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final FlutterAnimateBorderController controller =
-        FlutterAnimateBorderController();
+
     return Stack(
       children: <Widget>[
         Align(
           alignment: const Alignment(0, 0.5),
-          child: CustomPaint(
-            painter: HollowContainer(
-              layout: Layout.web,
-              circleSize: size.height * 0.45,
-              stroke: 24,
-              circular: 24,
-            ),
+          child: ListenableBuilder(
+            listenable: _animateValue,
+            builder:
+                (final BuildContext context, final Widget? child) =>
+                    CustomPaint(
+                      painter: HollowContainer(
+                        layout: Layout.web,
+                        circleSize: size.height * 0.45,
+                        stroke: 24,
+                        circular: 24,
+                        animate:
+                            AppGlobalKey.initialBoot ? 1 : _animateValue.value,
+                      ),
+                      child: child,
+                    ),
             child: SizedBox(
               width: size.width * 0.80,
               height: size.height * 0.70,
@@ -140,10 +182,26 @@ class WebHomeView extends StatelessWidget {
                   ),
                 ],
               ),
+            ).animate().fade(
+              delay: const Duration(seconds: 2),
+              duration: const Duration(milliseconds: 1000),
+              begin: AppGlobalKey.initialBoot ? 1 : 0,
+              end: 1,
             ),
           ),
         ),
       ],
+    );
+  }
+
+  @override
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<FlutterAnimateBorderController>(
+        'controller',
+        controller,
+      ),
     );
   }
 }

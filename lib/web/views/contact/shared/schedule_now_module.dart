@@ -76,7 +76,7 @@ class _WebScheduleNowModuleState extends State<WebScheduleNowModule> {
                           ..setCornerRadius(48)
                           ..setLineThickness(8)
                           ..setLineWidth(24)
-                          ..setLinePadding(-20),
+                          ..setLinePadding(20),
                     child: ElevatedButton(
                       statesController: buttonState,
                       style: ButtonStyle(
@@ -163,6 +163,9 @@ class MobileScheduleModule extends StatefulWidget {
 class _MobileScheduleModuleState extends State<MobileScheduleModule> {
   late final WidgetStatesController buttonState;
 
+  final FlutterAnimateBorderController controller =
+      FlutterAnimateBorderController();
+
   @override
   void initState() {
     super.initState();
@@ -200,21 +203,43 @@ class _MobileScheduleModuleState extends State<MobileScheduleModule> {
               ),
             ),
             const Gap(24),
-            AppCircleButton(
-              label: AppText.contactText2,
-              labelStyle: Theme.of(context).textTheme.displaySmall,
-              callback:
-                  () => unawaited(
-                    launchUrlString(
-                      AppUrl.calendly,
-                      mode: LaunchMode.externalApplication,
-                    ),
+            IntrinsicWidth(
+              child: FlutterAnimateBorder(
+                controller:
+                    controller
+                      ..setGradient(
+                        const LinearGradient(
+                          colors: <Color>[
+                            Color(AppColor.bgOrange),
+                            Color(AppColor.bgOrange),
+                          ],
+                        ),
+                      )
+                      ..setCornerRadius(48)
+                      ..setLineThickness(8)
+                      ..setLineWidth(24)
+                      ..setLinePadding(20),
+
+                child: AppCircleButton(
+                  label: AppText.contactText2,
+                  labelStyle: Theme.of(context).textTheme.displaySmall,
+                  callback:
+                      () => unawaited(
+                        launchUrlString(
+                          AppUrl.calendly,
+                          mode: LaunchMode.externalApplication,
+                        ),
+                      ),
+                  bgColor: const Color(AppColor.bgBlack),
+                  highlightColor: AppColor.bgYellow,
+                  borderColor: AppColor.bgYellow,
+                  borderRadius: 48,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 36,
+                    vertical: 24,
                   ),
-              bgColor: const Color(AppColor.bgBlack),
-              highlightColor: AppColor.bgYellow,
-              borderColor: AppColor.bgYellow,
-              borderRadius: 48,
-              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 24),
+                ),
+              ),
             ),
             const Gap(24),
           ],
@@ -226,8 +251,15 @@ class _MobileScheduleModuleState extends State<MobileScheduleModule> {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-      DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
-    );
+    properties
+      ..add(
+        DiagnosticsProperty<WidgetStatesController>('buttonState', buttonState),
+      )
+      ..add(
+        DiagnosticsProperty<FlutterAnimateBorderController>(
+          'controller',
+          controller,
+        ),
+      );
   }
 }

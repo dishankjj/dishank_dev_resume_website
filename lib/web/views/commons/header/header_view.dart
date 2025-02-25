@@ -6,6 +6,7 @@ import 'package:dishank_dev_resume_website/web/views/commons/header/platform/mob
 import 'package:dishank_dev_resume_website/web/views/commons/header/platform/web_header_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class HeaderView extends StatelessWidget {
   HeaderView(this.pageController, this.menuButtonCtrl, {super.key});
@@ -24,25 +25,27 @@ class HeaderView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: Color(AppColor.bgBlack),
-        boxShadow: <BoxShadow>[BoxShadow(blurRadius: 16, spreadRadius: 4)],
-      ),
-      child: context.layout(
-        mobile: MobileHeaderView(
-          key: AppGlobalKey.headerKey,
-          pageController,
-          menuItems: headerMenuItems,
-          menuButtonCtrl: menuButtonCtrl,
-        ),
-        tablet: const SizedBox(),
-        web: WebHeaderView(
-          key: AppGlobalKey.headerKey,
-          pageController,
-          menuItems: headerMenuItems,
-        ),
-      ),
-    );
+          decoration: const BoxDecoration(
+            color: Color(AppColor.bgBlack),
+            boxShadow: <BoxShadow>[BoxShadow(blurRadius: 16, spreadRadius: 4)],
+          ),
+          child: context.layout(
+            mobile: MobileHeaderView(
+              key: AppGlobalKey.headerKey,
+              pageController,
+              menuItems: headerMenuItems,
+              menuButtonCtrl: menuButtonCtrl,
+            ),
+            tablet: const SizedBox(),
+            web: WebHeaderView(
+              key: AppGlobalKey.headerKey,
+              pageController,
+              menuItems: headerMenuItems,
+            ),
+          ),
+        )
+        .animate(delay: const Duration(milliseconds: 400))
+        .fade(duration: const Duration(milliseconds: 400));
   }
 
   @override

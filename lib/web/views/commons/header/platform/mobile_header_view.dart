@@ -9,6 +9,7 @@ import 'package:dishank_dev_resume_website/web/views/commons/header/shared/drop_
 import 'package:dishank_dev_resume_website/web/views/commons/header/shared/mobile_menu_overlay.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -76,10 +77,13 @@ class _MobileHeaderViewState extends State<MobileHeaderView> {
       },
       child: Container(
         height: 76,
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        padding: const EdgeInsets.all(16),
         child: Row(
           children: <Widget>[
-            const Image(image: NetworkImage(ImageAssets.logo)),
+            const Image(image: NetworkImage(ImageAssets.logo)).animate().rotate(
+              begin: 10,
+              duration: const Duration(milliseconds: 1000),
+            ),
             const Spacer(),
             AppCircleButton(
               label: AppText.linkedin,

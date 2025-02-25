@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class AppTextButton extends StatefulWidget {
   const AppTextButton({
@@ -38,6 +39,8 @@ class AppTextButton extends StatefulWidget {
 class _ButtonVariantState extends State<AppTextButton> {
   late final WidgetStatesController _controller;
 
+  late final AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
@@ -53,36 +56,52 @@ class _ButtonVariantState extends State<AppTextButton> {
   @override
   Widget build(final BuildContext context) {
     return ElevatedButton(
-      statesController: _controller,
-      style: ButtonStyle(
-        fixedSize: WidgetStatePropertyAll<Size?>(widget.size),
-        backgroundColor: const WidgetStatePropertyAll<Color>(
-          Colors.transparent,
-        ),
-        shadowColor: const WidgetStatePropertyAll<Color>(Colors.transparent),
-      ),
-      onPressed: widget.callback,
-      child: ListenableBuilder(
-        listenable: _controller,
-        builder: (final BuildContext context, final Widget? snapshot) {
-          return Text(
-            widget.label,
-            style: widget.labelStyle?.copyWith(
-              color:
-                  _controller.value.any(
-                            (final WidgetState state) => <WidgetState>[
-                              WidgetState.pressed,
-                            ].any(
-                              (final WidgetState element) => element == state,
-                            ),
-                          ) ||
-                          widget.isSelected
-                      ? Color(widget.textHighlightColor)
-                      : null,
+          statesController: _controller,
+          style: ButtonStyle(
+            fixedSize: WidgetStatePropertyAll<Size?>(widget.size),
+            backgroundColor: const WidgetStatePropertyAll<Color>(
+              Colors.transparent,
             ),
-          );
-        },
-      ),
-    );
+            shadowColor: const WidgetStatePropertyAll<Color>(
+              Colors.transparent,
+            ),
+          ),
+          onHover: (final bool value) {
+            _animationController.toggle();
+          },
+          onPressed: widget.callback,
+          child: ListenableBuilder(
+            listenable: _controller,
+            builder: (final BuildContext context, final Widget? snapshot) {
+              return Text(
+                widget.label,
+                style: widget.labelStyle?.copyWith(
+                  color:
+                      _controller.value.any(
+                                (final WidgetState state) =>
+                                    <WidgetState>[WidgetState.pressed].any(
+                                      (final WidgetState element) =>
+                                          element == state,
+                                    ),
+                              ) ||
+                              widget.isSelected
+                          ? Color(widget.textHighlightColor)
+                          : null,
+                ),
+              );
+            },
+          ),
+        )
+        .animate(
+          onInit: (final AnimationController controller) {
+            _animationController = controller;
+          },
+        )
+        .scaleXY(
+          begin: 1.2,
+          end: 1,
+          duration: const Duration(milliseconds: 200),
+        )
+        .flipH(begin: 0.25, end: 0, perspective: -2);
   }
 }
