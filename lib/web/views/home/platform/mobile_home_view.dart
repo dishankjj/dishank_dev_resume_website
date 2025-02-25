@@ -163,6 +163,10 @@ class _MobileHomeViewState extends State<MobileHomeView>
                             const Spacer(),
                             Gap(circleSize),
                           ].map((final Widget e) {
+                            if (AppGlobalKey.initialBoot) {
+                              return e;
+                            }
+
                             if (e is Text || e is TextAnimatingWidget) {
                               const int timerDuration = 800;
                               innerIndex += 1;

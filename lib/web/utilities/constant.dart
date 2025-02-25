@@ -10,7 +10,7 @@ class AppText {
   /// HOME
   static const String homeText1 = 'Hi there :)';
   static const String homeText2 =
-      'Innovator,Architect,Visionary,Flutter Expert,Open-Source Contributor,Problem Solver,Mobile Engineer,Dishank Jindal';
+      'Innovator,Architect,Visionary,Open-Source Contributor,Problem Solver,Flutter Expert,Dishank Jindal';
   static const String homeText3 =
       'Mobile Software Engineer\nBring your ideas to life with me';
   static const String homeText4 =
