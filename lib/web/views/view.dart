@@ -91,9 +91,9 @@ class _MainViewState extends State<MainView> {
         child: Stack(
           children: <Widget>[
             PageView.builder(
-              physics: const ClampingScrollPhysics(),
-              scrollDirection: Axis.vertical,
               controller: rootPageController,
+              pageSnapping: false,
+              scrollDirection: Axis.vertical,
               itemBuilder: (final BuildContext context, final int index) {
                 return children[index];
               },
