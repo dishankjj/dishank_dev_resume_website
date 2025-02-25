@@ -4,6 +4,7 @@ import 'package:dishank_dev_resume_website/web/views/commons/gap/header_fill.dar
 import 'package:dishank_dev_resume_website/web/views/expertise/shared/info_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_animate_border/flutter_animate_border.dart';
 import 'package:gap/gap.dart';
 
@@ -68,51 +69,61 @@ class MobileExpertiseView extends StatelessWidget {
                 crossAxisSpacing: 16,
                 childAspectRatio: 2,
               ),
-              children: List<Widget>.generate(expertiseList.length, (
-                final int index,
-              ) {
-                if (index.isEven) {
-                  return FlutterAnimateBorder(
-                    controller:
-                        FlutterAnimateBorderController()
-                          ..setGradient(
-                            const RadialGradient(
-                              radius: 1,
-                              colors: <Color>[
-                                Color(AppColor.bgYellow),
-                                Colors.transparent,
-                              ],
-                            ),
-                          )
-                          ..setLineThickness(2)
-                          ..setLineWidth(48)
-                          ..setCornerRadius(18),
-                    child: InfoCard.dark(label: expertiseList[index]),
-                  );
-                } else {
-                  return AspectRatio(
-                    aspectRatio: 1,
-                    child: FlutterAnimateBorder(
-                      controller:
-                          FlutterAnimateBorderController()
-                            ..setGradient(
-                              const RadialGradient(
-                                radius: 1,
-                                colors: <Color>[
-                                  Color(AppColor.bgYellow),
-                                  Colors.transparent,
-                                ],
+              children:
+                  List<Widget>.generate(expertiseList.length, (
+                        final int index,
+                      ) {
+                        final List<int> white = <int>[0, 3, 4, 7, 8];
+
+                        if (white.any((final int e) => index == e)) {
+                          return FlutterAnimateBorder(
+                            controller:
+                                FlutterAnimateBorderController()
+                                  ..setGradient(
+                                    const RadialGradient(
+                                      radius: 1,
+                                      colors: <Color>[
+                                        Color(AppColor.bgYellow),
+                                        Colors.transparent,
+                                      ],
+                                    ),
+                                  )
+                                  ..setLineThickness(2)
+                                  ..setLineWidth(48)
+                                  ..setCornerRadius(18),
+                            child: InfoCard.dark(label: expertiseList[index]),
+                          );
+                        } else {
+                          return AspectRatio(
+                            aspectRatio: 1,
+                            child: FlutterAnimateBorder(
+                              controller:
+                                  FlutterAnimateBorderController()
+                                    ..setGradient(
+                                      const RadialGradient(
+                                        radius: 1,
+                                        colors: <Color>[
+                                          Color(AppColor.bgYellow),
+                                          Colors.transparent,
+                                        ],
+                                      ),
+                                    )
+                                    ..setLineThickness(2)
+                                    ..setLineWidth(48)
+                                    ..setLinePadding(0)
+                                    ..setCornerRadius(18),
+                              child: InfoCard.light(
+                                label: expertiseList[index],
                               ),
-                            )
-                            ..setLineThickness(2)
-                            ..setLineWidth(48)
-                            ..setLinePadding(0)
-                            ..setCornerRadius(18),
-                      child: InfoCard.light(label: expertiseList[index]),
-                    ),
-                  );
-                }
-              }),
+                            ),
+                          );
+                        }
+                      })
+                      .map(
+                        (final Widget child) =>
+                            child.animate().fade().scaleXY(begin: 1.2),
+                      )
+                      .toList(),
             ),
           ),
         ),

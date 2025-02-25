@@ -38,7 +38,9 @@ class _TextAnimatingWidgetState extends State<TextAnimatingWidget>
 
     unawaited(
       Future<void>.delayed(const Duration(milliseconds: 1200)).then((_) {
-        _animationController.forward();
+        if (mounted) {
+          _animationController.forward();
+        }
       }),
     );
 
@@ -49,14 +51,18 @@ class _TextAnimatingWidgetState extends State<TextAnimatingWidget>
       if (status == AnimationStatus.completed) {
         unawaited(
           Future<void>.delayed(const Duration(milliseconds: 500)).then((_) {
-            _animationController.reverse();
+            if (mounted) {
+              _animationController.reverse();
+            }
           }),
         );
       } else if (status == AnimationStatus.dismissed) {
         loopCount += 1;
         unawaited(
           Future<void>.delayed(const Duration(milliseconds: 200)).then((_) {
-            _animationController.forward();
+            if (mounted) {
+              _animationController.forward();
+            }
           }),
         );
       }
