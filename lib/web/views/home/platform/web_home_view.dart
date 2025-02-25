@@ -182,7 +182,7 @@ class _WebHomeViewState extends State<WebHomeView>
                             ),
                           ].map((final Widget e) {
                             if (e is Text) {
-                              const int timerDuration = 1000;
+                              const int timerDuration = 800;
                               innerIndex += 1;
                               return e
                                   .animate(
@@ -194,14 +194,16 @@ class _WebHomeViewState extends State<WebHomeView>
                                     begin: 0,
                                     end: 1,
                                     duration: const Duration(
-                                      milliseconds: timerDuration ~/ 4,
+                                      milliseconds: timerDuration ~/ 2,
                                     ),
+                                    curve: Curves.decelerate,
                                   )
                                   .slideX(
                                     begin: -0.2,
                                     duration: const Duration(
-                                      milliseconds: timerDuration ~/ 2,
+                                      milliseconds: timerDuration,
                                     ),
+                                    curve: Curves.decelerate,
                                   );
                             }
 
