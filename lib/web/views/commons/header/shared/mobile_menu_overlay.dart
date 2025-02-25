@@ -9,7 +9,7 @@ class MobileMenuOverlay extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final Size query = MediaQuery.sizeOf(context);
-    final Size size = Size(query.width * 0.36, query.width * 0.6);
+    final Size size = Size(query.width * 0.36, 0);
 
     final RenderBox? box = switch (AppGlobalKey.menuKey.currentContext) {
       != null =>
@@ -25,7 +25,7 @@ class MobileMenuOverlay extends StatelessWidget {
       top: pos.dy + ((box?.size.width ?? 1) / 2),
       left: pos.dx + ((box?.size.height ?? 1) / 2),
       child: Container(
-        height: size.height,
+        // height: size.height,
         width: size.width,
         decoration: BoxDecoration(
           color: const Color(AppColor.menu),

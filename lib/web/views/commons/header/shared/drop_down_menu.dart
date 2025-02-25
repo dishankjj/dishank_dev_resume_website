@@ -31,24 +31,29 @@ class DropDownMenuWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           for (int index = 0; index < totalCount; index++)
-            TextButton(
-              onPressed: () {
-                callbacks[index]();
-                menuButtonCtrl.hide();
-              },
-              child: ListenableBuilder(
-                listenable: pageController,
-                builder: (final BuildContext context, _) {
-                  return Text(
-                    items[index],
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color:
-                          (pageController.page?.round() ?? 0) == index
-                              ? const Color(AppColor.bgYellow)
-                              : null,
-                    ),
-                  );
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: TextButton(
+                onPressed: () {
+                  callbacks[index]();
+                  menuButtonCtrl.hide();
                 },
+                child: ListenableBuilder(
+                  listenable: pageController,
+                  builder: (final BuildContext context, _) {
+                    return Text(
+                      items[index],
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall?.copyWith(
+                        color:
+                            (pageController.page?.round() ?? 0) == index
+                                ? const Color(AppColor.bgYellow)
+                                : null,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
         ],
