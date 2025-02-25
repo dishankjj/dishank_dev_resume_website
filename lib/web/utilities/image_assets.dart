@@ -2,8 +2,8 @@ class ImageAssets {
   static const String _base = 'https://ik.imagekit.io/Dishank/dishank.dev';
 
   /// Website Global Assets
-  static const String logo = '$_base/img/logo.png';
-  static const String dp = '$_base/img/dp.png';
+  static const String logo = '$_base/img/logo.png?updatedAt=1739905059252';
+  static const String dp = '$_base/img/dp.png?updatedAt=1740507459458';
 
   /// Backgrounds
   static const String background1 = '$_base/img/bg/bg_1.png';
